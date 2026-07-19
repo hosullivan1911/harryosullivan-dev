@@ -1,3 +1,10 @@
+---
+const {
+	title = "Harry O'Sullivan | Systems Geologist and Mining Technology Builder",
+	description = "Harry O'Sullivan is a Perth-based systems geologist building mining technology, geoscience AI tools, workflow automation and project management prototypes.",
+} = Astro.props;
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -6,7 +13,9 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<meta name="description" content={description} />
+		<meta name="author" content="Harry O'Sullivan" />
+		<title>{title}</title>
 	</head>
 	<body>
 		<slot />
