@@ -1,0 +1,346 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const universityProjects = [
+	{
+		title: 'Geophysical data visualisation',
+		description:
+			'Used GMT and shell scripting to combine gravity, seismic velocity and spatial data into a single crustal interpretation; awarded 95%.',
+	},
+	{
+		title: 'Tibetan Plateau tectonics',
+		description:
+			'Mapped seismicity, faults, GPS velocities, strain rate and seismic moment to explore how the plateau is deforming.',
+	},
+	{
+		title: 'Kaʻena Ridge dissertation',
+		description:
+			'Used forward gravity modelling, bathymetry and magnetic data to investigate how an oceanic plate bends beneath a Hawaiian seamount.',
+	},
+	{
+		title: 'Cenozoic climate reconstruction',
+		description:
+			'Analysed CO₂ proxies and oxygen-isotope records to explore changing climate sensitivity through the past 67 million years.',
+	},
+	{
+		title: 'Congo Canyon turbidity currents',
+		description:
+			'Studied long-runout underwater sediment flows and translated the analysis into practical recommendations for subsea cable risk.',
+	},
+];
+
+const books = [
+	{
+		title: 'How the World Really Works',
+		author: 'Vaclav Smil',
+	},
+	{
+		title: 'Red Plenty',
+		author: 'Francis Spufford',
+	},
+	{
+		title: 'Into Thin Air',
+		author: 'Jon Krakauer',
+	},
+];
+---
+
+<Layout>
+	<div class="site">
+		<header>
+			<nav>
+				<a href="/">home</a>
+				<span>/</span>
+				<a href="/about" aria-current="page">about</a>
+				<span>/</span>
+				<a href="/projects-to-date">projects to date</a>
+			</nav>
+		</header>
+
+		<main>
+			<section class="intro">
+				<h1>About me</h1>
+
+				<p class="lead">
+					I am Harry O'Sullivan, a geophysicist turned mining-technology
+					builder based in Perth, Western Australia.
+				</p>
+			</section>
+
+			<section class="content">
+				<p>
+					I graduated from Durham University with a first-class degree in
+					Geophysics with Geology. What I enjoyed most was using messy,
+					imperfect Earth data to build an interpretation: writing scripts,
+					combining spatial datasets, testing models and deciding what the
+					evidence actually supported.
+				</p>
+
+				<p>
+					Since moving into mining, that curiosity has expanded well beyond
+					geophysics. I have continually picked up new skills in Python, GIS,
+					SQL, Snowflake, machine learning, generative AI and product
+					development — usually because there was a real operational problem
+					I wanted to solve.
+				</p>
+
+				<p>
+					I am still early in that journey. I learn fastest by building:
+					starting with a rough prototype, putting it in front of users and
+					working out what survives contact with the real world. I am especially
+					interested in the gap between an impressive technical demo and a tool
+					that people trust enough to use.
+				</p>
+
+				<h2>Favourite university projects</h2>
+
+				<div class="project-list">
+					{
+						universityProjects.map((project) => (
+							<article>
+								<h3>{project.title}</h3>
+								<p>{project.description}</p>
+							</article>
+						))
+					}
+				</div>
+
+				<h2>Books I like</h2>
+				<p class="section-subtitle">I am a keen and varied reader.</p>
+
+				<div class="book-list">
+					{
+						books.map((book) => (
+							<p>
+								{book.title}
+								<span class="author"> — {book.author}</span>
+							</p>
+						))
+					}
+				</div>
+
+				<h2>What I am working toward</h2>
+
+				<p>
+					I want to help change how the mining industry plans, learns and makes
+					decisions. Mining has difficult physical constraints, fragmented data,
+					deep specialist knowledge and a huge number of workflows that still
+					depend on manual interpretation. That makes it a hard place to build
+					technology — and a very worthwhile one.
+				</p>
+
+				<p>
+					My interests sit where geoscience, software, spatial data and AI meet.
+					Long term, I would like to build products that make complex
+					operational decisions clearer, faster and more measurable, and
+					potentially build a company around one of those stubborn problems.
+				</p>
+
+				<p>
+					This website is my working record: projects I have built, ideas I am
+					testing and things I am still learning.
+				</p>
+
+				<section class="note">
+					<p>
+						Professional work shown here is simplified and anonymised.
+						Descriptions reflect my own perspective and do not disclose
+						confidential data or proprietary implementation details.
+					</p>
+				</section>
+			</section>
+		</main>
+
+		<footer>
+			<a href="/">← back home</a>
+
+			<a
+				href="https://www.linkedin.com/in/harry-o-sullivan-288b0b194/"
+				target="_blank"
+				rel="noreferrer"
+			>
+				LinkedIn
+			</a>
+		</footer>
+	</div>
+</Layout>
+
+<style>
+	:global(*) {
+		box-sizing: border-box;
+	}
+
+	:global(html) {
+		background: #000;
+		color: #fff;
+		font-family: "Courier New", Courier, monospace;
+	}
+
+	:global(body) {
+		margin: 0;
+		background: #000;
+	}
+
+	:global(a) {
+		color: #fff;
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
+
+	:global(a:hover) {
+		color: #d0d0d0;
+	}
+
+	.site {
+		width: min(780px, calc(100% - 40px));
+		min-height: 100vh;
+		margin: 0 auto;
+		padding: 24px 0 32px;
+	}
+
+	header {
+		padding-bottom: 14px;
+		border-bottom: 1px dashed #777;
+	}
+
+	nav {
+		display: flex;
+		justify-content: flex-end;
+		gap: 10px;
+		font-size: 15px;
+		line-height: 1.4;
+	}
+
+	main {
+		padding: 48px 0;
+	}
+
+	.intro {
+		padding-bottom: 34px;
+		border-bottom: 1px dashed #777;
+	}
+
+	h1 {
+		margin: 0 0 14px;
+		font-size: 18px;
+		line-height: 1.4;
+	}
+
+	.lead {
+		max-width: 680px;
+		margin: 0;
+		color: #d0d0d0;
+		font-size: 16px;
+		line-height: 1.7;
+	}
+
+	.content {
+		padding-top: 40px;
+	}
+
+	h2 {
+		margin: 44px 0 18px;
+		font-size: 16px;
+		line-height: 1.4;
+	}
+
+	p {
+		margin: 0 0 18px;
+		color: #aaa;
+		font-size: 14px;
+		line-height: 1.8;
+	}
+
+	.project-list {
+		border-top: 1px dashed #555;
+	}
+
+	.project-list article {
+		display: grid;
+		grid-template-columns: 210px 1fr;
+		gap: 24px;
+		padding: 18px 0;
+		border-bottom: 1px dashed #555;
+	}
+
+	h3 {
+		margin: 0;
+		font-size: 14px;
+		line-height: 1.6;
+	}
+
+	.author {
+		color: #777;
+		font-weight: normal;
+	}
+
+	.section-subtitle {
+		margin-top: -8px;
+		margin-bottom: 18px;
+		color: #777;
+		font-size: 13px;
+	}
+
+	.book-list {
+		padding: 14px 0;
+		border-top: 1px dashed #555;
+		border-bottom: 1px dashed #555;
+	}
+
+	.book-list p {
+		margin: 0;
+		padding: 6px 0;
+		color: #fff;
+		font-size: 14px;
+		line-height: 1.5;
+	}
+
+	.project-list p {
+		margin: 0;
+		font-size: 13px;
+		line-height: 1.65;
+	}
+
+	.note {
+		margin-top: 46px;
+		padding-top: 18px;
+		border-top: 1px dashed #555;
+	}
+
+	.note p {
+		margin: 0;
+		color: #777;
+		font-size: 12px;
+		line-height: 1.7;
+	}
+
+	footer {
+		display: flex;
+		justify-content: space-between;
+		gap: 18px;
+		padding-top: 18px;
+		border-top: 1px dashed #777;
+		font-size: 15px;
+	}
+
+	@media (max-width: 620px) {
+		.site {
+			width: min(100% - 24px, 780px);
+		}
+
+		nav {
+			justify-content: flex-start;
+			flex-wrap: wrap;
+		}
+
+		.project-list article {
+			grid-template-columns: 1fr;
+			gap: 7px;
+		}
+
+		footer {
+			align-items: flex-start;
+			flex-direction: column;
+		}
+	}
+</style>

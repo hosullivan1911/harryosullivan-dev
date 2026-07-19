@@ -1,0 +1,200 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const years = [
+	{ year: '2023', entries: [
+		{ title: 'Metallurgical logging and core-photography standardisation', description: 'Improved core logging and photography workflows to create more consistent treatment of recovery, core loss, geological boundaries, image naming and storage.' },
+		{ title: 'End-of-hole chart and assay review tool', description: 'Built an automated tool for producing end-of-hole charts and reviewing assay information.' },
+		{ title: 'Survey and geological-data preparation utilities', description: 'Developed utilities that reduced repetitive preparation before survey and geological information was loaded into enterprise systems.' },
+		{ title: 'Downhole gamma and stratigraphic correlation calculator', description: 'Developed an analytical tool linking gamma responses with logged stratigraphy to support geological interpretation and correlation.' },
+		{ title: 'Historical disturbance and rehabilitation assessment', description: 'Combined database records, maps and aerial imagery to assess historical drilling disturbance and rehabilitation status.' }
+	] },
+	{ year: '2024', entries: [
+		{ title: 'Enterprise geological QAQC automation platform', description: 'Developed a rules-based system for checking drilling and geological datasets, then re-engineered it from VBA into Python to improve speed, maintainability and scale.' },
+		{ title: 'Automated QAQC reporting pipeline', description: 'Built automated report-generation and distribution workflows, progressing the process into a scheduled data pipeline with interactive reporting outputs.' },
+		{ title: 'Sonic recovery and productivity analysis', description: 'Analysed recovery and production by geology, stratigraphy, shift, drilling method and ground conditions to distinguish operational performance from geological difficulty.' },
+		{ title: 'Penetration-rate data model and dashboard', description: 'Built a reusable data model and reporting product for penetration rates by rig, geology, stratigraphy and operating conditions.' },
+		{ title: 'Spatial drilling-risk workflow', description: 'Created a spatial assessment workflow so planned holes could be checked against known underground hazards.' },
+		{ title: 'Density-hole relocation analysis', description: 'Combined geological, assay and spatial constraints to identify technically suitable alternative drilling locations.' },
+		{ title: 'Geological data integration into an enterprise platform', description: 'Worked with data teams to expose drilling, logging and operational information in a governed enterprise data environment.' },
+		{ title: 'Dynamic rig-scheduling tool', description: 'Developed a scheduling concept combining project priorities, expected drilling durations and available rig capacity.' },
+		{ title: 'Invoice-reconciliation automation', description: 'Developed automated comparisons between contractor invoices and operational records to identify discrepancies.' },
+		{ title: 'ArcGIS pad-and-sump automation', description: 'Built an ArcGIS Pro Python toolbox that automated drilling pad and sump layouts and reduced repetitive GIS preparation.' },
+		{ title: 'Live project-completion reporting', description: 'Developed a reporting concept that progressively populated project-completion information from live operational and QAQC data.' },
+		{ title: 'Enterprise reporting migration', description: 'Reviewed a large reporting portfolio, removed duplication and rebuilt priority drilling, geology and QAQC products in a modern BI platform.' }
+	] },
+	{ year: '2025', entries: [
+		{ title: 'AI drill-core photo classification', description: 'Coordinated an AI project to recognise and classify information from core photographs, including the creation of review datasets and a validation workflow.' },
+		{ title: 'Core-photo metadata automation', description: 'Developed a workflow concept for extracting depth and related metadata from core photographs to reduce manual indexing and improve searchability.' },
+		{ title: 'Geoscience AI use-case portfolio', description: 'Identified and developed practical AI use cases across drilling, geology, earthworks, imagery and operational data.' },
+		{ title: 'Terrain and drill-access analytics', description: 'Developed methods for classifying terrain and slope conditions to support drilling access, pad design and earthworks planning.' },
+		{ title: 'Geospatial planning automation suite', description: 'Developed GIS scripts that combined planning datasets, proposed drillholes and spatial assignment information.' },
+		{ title: 'Drillhole orientation optimiser', description: 'Built a Python toolbox for optimising drillhole orientations and released it for operational testing.' },
+		{ title: 'Equipment telemetry for earthworks analytics', description: 'Assessed whether heavy-equipment telemetry could improve earthworks forecasting and equipment-performance analysis.' },
+		{ title: 'Spatial-boundary breach prediction', description: 'Developed a machine-learning prototype using rolling behavioural features to identify equipment at elevated risk of crossing an approved work boundary.' }
+	] },
+	{ year: '2026', entries: [
+		{ title: 'AI-supported drill-pad optimiser', description: 'Developed an AI-supported approach to drill-pad orientation and optimisation using geological, terrain and earthworks inputs.' },
+		{ title: 'Planning-to-execution integration', description: 'Explored how pad-optimisation outputs could connect with operational planning and machine-guidance systems.' },
+		{ title: 'Agentic density-hole planner', description: 'Developed an agentic AI workflow for assisting with density-hole program design while retaining deterministic geological and operational checks.' },
+		{ title: 'RC twin scoring model', description: 'Developed a traceable scoring concept for assessing possible RC twin holes and supporting density planning.' },
+		{ title: 'Geophysics AI program designer', description: 'Built an agentic AI application that queried governed data, applied spatial and geological checks, and proposed candidate drilling programs for user review.' },
+		{ title: 'AI governance and delivery framework', description: 'Established a structured portfolio of geoscience AI projects with clear ownership, testing and validation responsibilities.' },
+		{ title: 'Natural-language geological analytics', description: 'Developed a semantic layer and conversational analyst capable of answering natural-language questions across drilling, geology and QAQC information.' },
+		{ title: 'Conversational operational-data interface', description: 'Helped develop a governed conversational interface that allowed users to interrogate operational and geological data without manually searching multiple reports and systems.' },
+		{ title: 'Operational-intelligence workflow', description: 'Combined activity, production, equipment and operator information to investigate operational performance and distinguish between allocation, task and equipment-related constraints.' },
+		{ title: 'Governed cross-system data integration', description: 'Coordinated internal and external technical teams to establish a governed proof of concept for sharing operational data between systems.' },
+		{ title: 'Multimodal geological QAQC', description: 'Developed a concept combining geological logging, structured QAQC information, comparison holes and core imagery within a conversational analysis workflow.' },
+		{ title: 'Rapid internal application pilot', description: 'Participated in a pilot to test rapid development and deployment of lightweight internal applications against governed geoscience data.' }
+	] }
+];
+---
+
+<Layout>
+	<div class="site">
+		<header>
+			<nav>
+				<a href="/">home</a>
+				<span>/</span>
+				<a href="/about">about</a>
+				<span>/</span>
+				<a href="/projects-to-date" aria-current="page">projects to date</a>
+			</nav>
+		</header>
+
+		<main>
+			<section class="intro">
+				<h1>Projects to date</h1>
+				<p>A selected and anonymised record of technical, operational and product work.</p>
+			</section>
+
+			<section class="timeline">
+				{years.map((group) => (
+					<section class="year-block">
+						<h2>{group.year}</h2>
+						<div class="year-entries">
+							{group.entries.map((entry) => (
+								<article class="project-entry">
+									<div class="marker" aria-hidden="true"></div>
+									<div>
+										<h3>{entry.title}</h3>
+										<p>{entry.description}</p>
+									</div>
+								</article>
+							))}
+						</div>
+					</section>
+				))}
+			</section>
+		</main>
+
+		<footer>
+			<a href="/">← back home</a>
+		</footer>
+	</div>
+</Layout>
+
+<style>
+	:global(*) { box-sizing: border-box; }
+	:global(html) {
+		background: #000;
+		color: #fff;
+		font-family: "Courier New", Courier, monospace;
+	}
+	:global(body) { margin: 0; background: #000; }
+	:global(a) {
+		color: #fff;
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
+	.site {
+		width: min(780px, calc(100% - 40px));
+		min-height: 100vh;
+		margin: 0 auto;
+		padding: 24px 0 32px;
+	}
+	header {
+		padding-bottom: 14px;
+		border-bottom: 1px dashed #777;
+	}
+	nav {
+		display: flex;
+		justify-content: flex-end;
+		gap: 10px;
+		font-size: 15px;
+	}
+	main { padding: 48px 0; }
+	.intro {
+		padding-bottom: 34px;
+		border-bottom: 1px dashed #777;
+	}
+	h1 { margin: 0 0 12px; font-size: 18px; }
+	.intro p {
+		margin: 0;
+		color: #bbb;
+		font-size: 15px;
+		line-height: 1.6;
+	}
+	.timeline { padding-top: 42px; }
+	.year-block {
+		display: grid;
+		grid-template-columns: 90px 1fr;
+		gap: 28px;
+		padding: 0 0 54px;
+	}
+	h2 {
+		position: sticky;
+		top: 24px;
+		align-self: start;
+		margin: 0;
+		font-size: 16px;
+	}
+	.year-entries { position: relative; }
+	.year-entries::before {
+		content: "";
+		position: absolute;
+		top: 8px;
+		bottom: 8px;
+		left: 4px;
+		border-left: 1px dashed #555;
+	}
+	.project-entry {
+		position: relative;
+		display: grid;
+		grid-template-columns: 18px 1fr;
+		gap: 14px;
+		padding-bottom: 28px;
+	}
+	.marker {
+		position: relative;
+		z-index: 1;
+		width: 9px;
+		height: 9px;
+		margin-top: 5px;
+		background: #000;
+		border: 1px solid #aaa;
+		border-radius: 50%;
+	}
+	h3 {
+		margin: 0 0 7px;
+		font-size: 15px;
+		line-height: 1.45;
+	}
+	.project-entry p {
+		margin: 0;
+		color: #aaa;
+		font-size: 14px;
+		line-height: 1.65;
+	}
+	footer {
+		padding-top: 18px;
+		border-top: 1px dashed #777;
+		font-size: 15px;
+	}
+	@media (max-width: 620px) {
+		.site { width: min(100% - 24px, 780px); }
+		nav { justify-content: flex-start; flex-wrap: wrap; }
+		.year-block { grid-template-columns: 1fr; gap: 18px; }
+		h2 { position: static; }
+	}
+</style>

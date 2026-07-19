@@ -1,0 +1,177 @@
+---
+const entries = [
+	{
+		date: '2026-05-11',
+		title: 'Vibe Coding a Project Management App with Claude',
+		href: '/projects/project-management-application',
+	},
+];
+---
+
+<div class="site">
+	<header>
+		<nav>
+			<a href="/" aria-current="page">home</a>
+			<span>/</span>
+			<a href="/about">about</a>
+			<span>/</span>
+			<a href="/projects-to-date">projects to date</a>
+		</nav>
+	</header>
+
+	<main>
+		<section class="intro">
+			<h1>Harry O'Sullivan</h1>
+			<p>Systems Geologist | Perth, Australia</p>
+		</section>
+
+		<section class="entries" aria-label="Articles and technical work">
+			{
+				entries.map((entry) => (
+					<div class="entry">
+						<span class="marker">-</span>
+						<span class="date">[ {entry.date} ]</span>
+						<a href={entry.href}>{entry.title}</a>
+					</div>
+				))
+			}
+		</section>
+	</main>
+
+	<footer>
+		<a
+			href="https://www.linkedin.com/in/harry-o-sullivan-288b0b194/"
+			target="_blank"
+			rel="noreferrer"
+		>
+			LinkedIn
+		</a>
+	</footer>
+</div>
+
+<style>
+	:global(*) {
+		box-sizing: border-box;
+	}
+
+	:global(html) {
+		background: #000;
+		color: #fff;
+		font-family:
+			"Courier New",
+			Courier,
+			monospace;
+	}
+
+	:global(body) {
+		margin: 0;
+		background: #000;
+	}
+
+	:global(a) {
+		color: #fff;
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
+
+	:global(a:hover) {
+		color: #d0d0d0;
+	}
+
+	.site {
+		width: min(780px, calc(100% - 40px));
+		min-height: 100vh;
+		margin: 0 auto;
+		padding: 24px 0 32px;
+		display: flex;
+		flex-direction: column;
+	}
+
+	header {
+		padding-bottom: 14px;
+		border-bottom: 1px dashed #777;
+	}
+
+	nav {
+		display: flex;
+		justify-content: flex-end;
+		gap: 10px;
+		font-size: 15px;
+		line-height: 1.4;
+	}
+
+	main {
+		flex: 1;
+	}
+
+	.intro {
+		padding: 34px 0 42px;
+		border-bottom: 1px dashed #777;
+	}
+
+	h1 {
+		margin: 0 0 12px;
+		font-size: 16px;
+		font-weight: 700;
+		line-height: 1.2;
+	}
+
+	.intro p {
+		margin: 0;
+		font-size: 15px;
+		line-height: 1.6;
+	}
+
+	.entries {
+		padding: 40px 0;
+		border-bottom: 1px dashed #777;
+	}
+
+	.entry {
+		display: grid;
+		grid-template-columns: 18px 120px 1fr;
+		align-items: baseline;
+		font-size: 15px;
+		line-height: 1.5;
+	}
+
+	.marker,
+	.date {
+		white-space: nowrap;
+	}
+
+	footer {
+		display: flex;
+		justify-content: flex-end;
+		padding-top: 16px;
+		font-size: 15px;
+	}
+
+	@media (max-width: 620px) {
+		.site {
+			width: min(100% - 24px, 780px);
+		}
+
+		nav {
+			justify-content: flex-start;
+			flex-wrap: wrap;
+		}
+
+		.entry {
+			grid-template-columns: 18px 1fr;
+			row-gap: 2px;
+		}
+
+		.date {
+			grid-column: 2;
+		}
+
+		.entry a {
+			grid-column: 2;
+		}
+
+		footer {
+			justify-content: flex-start;
+		}
+	}
+</style>

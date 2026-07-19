@@ -1,0 +1,334 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout>
+	<div class="site">
+		<header>
+			<nav>
+				<a href="/">home</a>
+				<span>/</span>
+				<a href="/about">about</a>
+				<span>/</span>
+				<a href="/projects-to-date">projects to date</a>
+			</nav>
+		</header>
+
+		<main>
+			<p class="date">[ 2026-05-11 ]</p>
+
+			<h1>Vibe Coding a Project Management App with Claude</h1>
+
+			<p>
+				Oliver is a small browser-based project management application
+				for turning messy delivery work into a visible map. I built it
+				with Claude, using the project as a
+				way to explore how planning software can show both formal
+				structure and practical dependencies at the same time. I used my experience
+                and preferred style of working to develop a simple but powerful concept.
+			</p>
+
+			<h2>Overview</h2>
+
+			<p>
+				The concept is a canvas where every piece of work is represented
+				as a rectangle (we used Miro alot). A department objective can be broken down into
+				initiatives, projects, workstreams, tasks and subtasks, creating
+				a clear hierarchy from strategy through to execution. Instead of
+				hiding that structure inside nested lists, Oliver lays it out
+				spatially so the shape of the work can be read at a glance.
+			</p>
+
+			<p>
+				The application also separates hierarchy from dependency. A
+				project can belong to an initiative, but it can also depend on a
+				workstream, task or subtask somewhere else in the map. Those
+				dependency links are drawn directly between rectangles, making it
+				easier to see where delivery risk, handoffs or coordination
+				problems might sit.
+			</p>
+
+			<section class="hierarchy-diagram" aria-labelledby="hierarchy-title">
+				<h2 id="hierarchy-title">Hierarchy model</h2>
+
+				<ol class="hierarchy-stack" aria-label="Project hierarchy">
+					<li>Department Objective</li>
+					<li>Initiative</li>
+					<li>Project</li>
+					<li>Workstream</li>
+					<li>Task</li>
+					<li>Sub-Task</li>
+				</ol>
+
+				<div class="relationship-key" aria-label="Relationship rules">
+					<div>
+						<span class="line-sample hierarchy"></span>
+						<span>Hierarchy link</span>
+					</div>
+					<div>
+						<span class="line-sample dependency"></span>
+						<span>Dependency link between delivery items</span>
+					</div>
+				</div>
+			</section>
+
+			<h2>How it works</h2>
+
+			<p>
+				Users create canvases, add work items, choose each item's level
+				in the hierarchy, and place it on the map. Items can be dragged
+				around freely, while their connecting lines follow them. The tool
+				uses colour to distinguish levels of work, green connectors for
+				hierarchy relationships, and coral connectors for dependencies.
+			</p>
+
+			<p>
+				When a user starts drawing a connection, Oliver highlights valid
+				targets and fades out unavailable ones. This keeps the map
+				flexible without letting the structure become meaningless:
+				department objectives flow down through the hierarchy, while
+				dependency links are reserved for the levels where actual
+				delivery coordination usually happens.
+			</p>
+
+			<h2>Development process</h2>
+
+			<p>
+				The build followed a loose vibe-coding process: start with the
+				feeling of the tool, make the smallest working version, then
+				tighten the rules as the product logic became clearer. The first
+				idea was simple: combine the visual freedom of Miro with the
+				accountability of Microsoft Planner. From there, the work became
+				less about adding features and more about deciding what the map
+				should refuse to do.
+			</p>
+
+			<p>
+				The hierarchy was the anchor. We settled on Department Objective
+				-&gt; Initiative -&gt; Project -&gt; Workstream -&gt; Task -&gt; Sub-Task, then
+				used that as the source of truth for creation rules, valid
+				hierarchy links, and visual colour. Every item stayed as the same
+				rounded rectangle so the interface did not become visually noisy;
+				the object type, connector state and relationship rules carried
+				the complexity instead.
+			</p>
+
+			<p>
+				The interaction model changed through iteration. The early
+				version used dropdowns to create relationships, which worked
+				technically but felt too administrative for a canvas tool. The
+				next version moved relationship creation onto the map itself:
+				connector dots on each rectangle, drag-to-link behaviour, target
+				highlighting while drawing, and a small popover that asks the
+				user to choose between hierarchy and dependency only when that
+				choice is valid.
+			</p>
+
+			<p>
+				That rule-checking became the main technical pattern. Hierarchy
+				links are validated against the object stack, with one important
+				exception: a Project can be tied to more than one Initiative.
+				Dependency links are deliberately narrower and cannot go higher
+				than Project, so Initiative and Department Objective objects
+				remain strategic structure rather than operational blockers.
+				When a rectangle is moved, its stored coordinates change and the
+				SVG relationship paths are recalculated from those coordinates,
+				which keeps the diagram feeling alive without needing a heavier
+				canvas engine.
+			</p>
+
+			<p>
+				The development process was conversational and visual. Each pass
+				started with a product instinct: make it blank on startup, remove
+				bulky explanation, make the background darker, make rectangles
+				rounder, allow free zoom, add saved canvases, then make the lines
+				feel hand-drawn rather than form-driven. The result is a small
+				prototype, but the logic underneath is already close to a real
+				product model: typed objects, relationship validation, local
+				persistence, canvas navigation, and visual feedback during user
+				actions.
+			</p>
+			<h2>Why it matters</h2>
+
+			<p>
+				Most project management tools are good at storing tasks, but less
+				good at showing why one piece of work is blocked by another.
+				Oliver treats the project plan as a living diagram. It is meant
+				to help a team see where work belongs, how it connects, and which
+				items are becoming pressure points because too many dependencies
+				run through them.
+			</p>
+
+			<p>
+				The pain-point view is designed for moments where a user or
+				manager needs to know what to push next. At work, several
+				projects can be held up by the same blocker (ie. Cyber
+				clearance or an email procedure being enacted in Snowflake). If
+				that blocker is visible as a shared pain point, it becomes much
+				easier to see that resolving one issue could get several projects
+				moving again.
+			</p>
+
+			<p>
+				The demo includes local canvas saving, quick switching between
+				saved maps, starred canvases for important flows, zooming,
+				panning, dependency visibility controls, and a pain-point view
+				that highlights items with multiple dependency connections. The
+				result is less like a task list and more like a working model of
+				how delivery is actually arranged.
+			</p>
+		</main>
+
+		<footer>
+			<a href="/">← back home</a>
+		</footer>
+	</div>
+</Layout>
+
+<style>
+	:global(html) {
+		background: #000;
+		color: #fff;
+		font-family: "Courier New", Courier, monospace;
+	}
+
+	:global(body) {
+		margin: 0;
+		background: #000;
+	}
+
+	:global(a) {
+		color: #fff;
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
+
+	.site {
+		width: min(780px, calc(100% - 40px));
+		min-height: 100vh;
+		margin: 0 auto;
+		padding: 24px 0 32px;
+	}
+
+	header {
+		padding-bottom: 14px;
+		border-bottom: 1px dashed #777;
+	}
+
+	nav {
+		display: flex;
+		justify-content: flex-end;
+		gap: 10px;
+		font-size: 15px;
+	}
+
+	main {
+		padding: 48px 0;
+	}
+
+	.date {
+		color: #aaa;
+		margin-bottom: 20px;
+	}
+
+	h1 {
+		margin: 0 0 32px;
+		font-size: 24px;
+		line-height: 1.4;
+	}
+
+	h2 {
+		margin-top: 42px;
+		font-size: 17px;
+	}
+
+	p {
+		max-width: 720px;
+		font-size: 15px;
+		line-height: 1.75;
+	}
+
+	.hierarchy-diagram {
+		max-width: 720px;
+		margin: 36px 0 6px;
+		padding: 18px 0;
+		border-top: 1px dashed #777;
+		border-bottom: 1px dashed #777;
+	}
+
+	.hierarchy-diagram h2 {
+		margin-top: 0;
+		margin-bottom: 18px;
+	}
+
+	.hierarchy-stack {
+		display: grid;
+		gap: 10px;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.hierarchy-stack li {
+		position: relative;
+		padding: 10px 12px;
+		border: 1px dashed #777;
+		font-size: 14px;
+		line-height: 1.4;
+	}
+
+	.hierarchy-stack li:not(:last-child)::after {
+		content: "";
+		position: absolute;
+		left: 22px;
+		bottom: -10px;
+		width: 1px;
+		height: 10px;
+		background: #777;
+	}
+
+	.relationship-key {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 14px 20px;
+		margin-top: 18px;
+		color: #aaa;
+		font-size: 12px;
+	}
+
+	.relationship-key div {
+		display: inline-flex;
+		gap: 8px;
+		align-items: center;
+	}
+
+	.line-sample {
+		display: block;
+		width: 34px;
+		height: 1px;
+		border-top: 2px solid #7bd88f;
+	}
+
+	.line-sample.dependency {
+		border-top-color: #ff8f7a;
+		border-top-style: dashed;
+	}
+
+	footer {
+		padding-top: 18px;
+		border-top: 1px dashed #777;
+		font-size: 15px;
+	}
+
+	@media (max-width: 620px) {
+		.site {
+			width: min(100% - 24px, 780px);
+		}
+
+		nav {
+			justify-content: flex-start;
+			flex-wrap: wrap;
+		}
+
+	}
+</style>
