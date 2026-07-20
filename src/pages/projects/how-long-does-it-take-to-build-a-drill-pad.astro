@@ -1,0 +1,219 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PadOrientationOptions from './pad_orientation_options_public_v2.png';
+import PadOrientationWorkflow from './pad_orientation_workflow.png';
+---
+
+<Layout
+	title="How long does it take to build a drill pad?"
+	description="Using machine spatial data and planning variables to improve earthworks forecasting for drill pad construction."
+>
+	<div class="site">
+		<header>
+			<nav>
+				<a href="/">home</a>
+				<span>/</span>
+				<a href="/about">about</a>
+				<span>/</span>
+				<a href="/projects-to-date">projects to date</a>
+			</nav>
+		</header>
+
+		<main>
+			<p class="date">[ 2026-07-20 ]</p>
+			<h1>How long does it take to build a drill pad?</h1>
+			<p class="subtitle">Using machine spatial data and planning variables to improve earthworks forecasting</p>
+
+			<p>Depending on terrain, earthworks is generally one of the most expensive aspects of drilling in and around mine sites.</p>
+			<p>An effective schedule for managing the construction of tracks and pads against a drill plan is therefore essential. If pads are not ready, rigs can end up waiting. At the same time, overestimating construction durations can result in inefficient scheduling of operators, equipment and contractors.</p>
+			<p>In my opinion, there is significant room to improve how pad construction time is forecast.</p>
+			<p>This can be achieved by combining machine spatial data with known variables associated with completed pads. The relationship between these variables and the recorded construction duration can then be used to develop quantitative duration multipliers or a forecasting model.</p>
+			<p>Importantly, many of the same variables can be determined before construction begins.</p>
+			<p>The most obvious example is pad specification. Bigger pads generally take longer to build. Similarly, the expected water table can determine the size of the sump required on a pad. Larger sumps require additional excavation and can add to the construction duration.</p>
+			<p>There are also an array of less obvious variables, particularly to a geologist, which become apparent through discussions with operators. These field observations can be taken back to the office and tested against the available data to determine whether they are genuinely significant.</p>
+
+			<p>Examples that have been raised include:</p>
+			<ul>
+				<li>ground-surface hardness, potentially predicted using an existing geological or geotechnical model;</li>
+				<li>cavity presence, with a risk rating assigned based on previous work or non-intrusive assessment;</li>
+				<li>broad operator capability, such as whether a team has a high percentage of new starters;</li>
+				<li>dozer and excavator availability;</li>
+				<li>the sequence in which equipment is required;</li>
+				<li>the amount of cut and fill;</li>
+				<li>whether excavated material must be removed from the pad area;</li>
+				<li>the distance from existing tracks and access routes.</li>
+			</ul>
+
+			<p>At a broad level, a pad may require an excavator first and then a dozer before construction is complete. If either machine is unavailable, this will impact the overall duration even if no work is actively occurring within the pad boundary.</p>
+			<p>These delays should ideally be separated from the actual machine working time, but both are important when trying to forecast when a pad will be available for drilling.</p>
+
+			<h2>Terrain category, rig type and pad specification</h2>
+			<p class="section-intro">A dive into one of the most prominent variables affecting pad construction time</p>
+			<p>Another obvious construction fact is that pads in steeper terrain generally take longer to build.</p>
+			<p>There is usually a greater amount of cut and fill required, while accessing the work area can also take significantly longer. In some cases, the equipment may need to build its own access as it progresses.</p>
+			<p>However, the relationship between terrain and pad size is also influenced by the type of drill rig allocated to the hole.</p>
+
+			<h3>RC drilling</h3>
+			<p>For RC drilling, operational sites often have access to a relatively solid supply of rigs.</p>
+			<p>This means there may be some flexibility to allocate smaller rigs to holes in steeper terrain, reducing the required pad size. Alternatively, rig allocation for these holes may be based on the off-road capability of the asset and whether it can safely reach the planned location.</p>
+			<p>I have built GIS workflows that categorise RC pads based on the terrain surrounding each planned drill hole.</p>
+			<p>The terrain categories are steep, moderate and flat. Sites are then given the option to nominate a specific RC pad specification for each terrain category.</p>
+			<p>This allows smaller pad specifications to be automatically assigned in more constrained terrain where the appropriate rigs are available, while larger standard pads can be assigned in flat and accessible areas.</p>
+			<p>A confidence value is also assigned to each terrain classification. This is currently based on the standard deviation of terrain around the hole. Where the surrounding elevation is highly variable, the classification is considered less reliable and the hole is flagged for manual assessment.</p>
+			<p>This is useful because average slope alone does not always provide an accurate representation of the local terrain. A hole could sit within an area that appears broadly moderate but contains sharp breaks in slope, drainage features or small ridges that would materially affect construction.</p>
+
+			<h3>Diamond drilling</h3>
+			<p>The case for diamond drilling is slightly different.</p>
+			<p>Diamond rigs are very expensive, while individual drilling programmes at a site can be relatively short-lived. As a result, drilling partners are often required to move rigs between different mine and exploration sites several times a year.</p>
+			<p>These rigs can also be restricted to drilling particular core sizes, such as PQ or HQ, and often have very different support requirements.</p>
+			<p>The pad specification for a diamond drill hole is therefore much more asset-specific.</p>
+			<p>Diamond contractor A may require a completely different footprint from diamond contractor B. Differences could include the dimensions of the rig itself, rod handling, support vehicles, water storage, sumps and other associated equipment.</p>
+			<p>For diamond holes, assigning pad dimensions is therefore more simple. The required specification is assigned based on the allocated drill rig.</p>
+			<p>Terrain still affects how difficult the pad will be to construct, but the base dimensions are primarily controlled by the asset.</p>
+
+			<h2>Pad orientation optimisation</h2>
+			<p>Once the relevant pad specification has been assigned to each planned drill hole, every pad is run through an orientation optimiser.</p>
+			<p>For vertical holes, the pad can be rotated around the drill collar without changing the planned drilling target.</p>
+			<p>The optimiser uses the most up-to-date digital elevation model available and assesses a range of possible pad orientations.</p>
+			<p>For each orientation, it estimates the amount of cut and fill required to construct the pad. A cost per cubic metre can then be applied to both cut and fill, allowing the orientations to be ranked based on estimated earthworks cost.</p>
+			<p>The preferred orientation is generally the one that minimises the net construction cost. However, this does not always produce the most practical result.</p>
+			<p>An orientation may minimise cut and fill but face away from an existing track, create a poor equipment approach or result in an impractical connection with the surrounding work area.</p>
+
+			<figure class="image-figure">
+				<img src={PadOrientationOptions.src} alt="Candidate drill pad orientation options assessed against terrain and access" loading="lazy" />
+				<figcaption>Candidate pad orientations can be compared using estimated cut and fill before practical access is considered.</figcaption>
+			</figure>
+
+			<p>To account for this, a number of candidate orientations are sent alongside an up-to-date aerial image through an OpenAI API.</p>
+			<p>The purpose of this step is to assess which of the optimised orientations most closely aligns with the existing track network.</p>
+			<p>The selected azimuth is then assigned to the relevant hole in our drill hole management software.</p>
+			<p>This gives the earthworks team a pad orientation that considers both the underlying terrain and the practical access visible in the latest imagery.</p>
+
+			<figure class="image-figure">
+				<img src={PadOrientationWorkflow.src} alt="Workflow connecting drill planning, pad orientation optimisation and machine guidance data" loading="lazy" />
+				<figcaption>The orientation workflow connects planning inputs, terrain optimisation, practical access assessment and operational outputs.</figcaption>
+			</figure>
+
+			<h2>Connecting the plan with machine data</h2>
+			<p>I have built a Streamlit application that brings this workflow together.</p>
+			<p>The application pulls data from a variety of sources, including our drill programme management vendor, terrain datasets, rig assignments and pad specifications.</p>
+			<p>It then runs the relevant terrain classification and orientation workflows before producing spatial outputs for review.</p>
+			<p>The application outputs shapefiles and, most importantly, an SQLite file for use within our machine guidance system.</p>
+			<p>This means that the pad geometry created during planning can be made available directly to the machines completing the work.</p>
+			<p>We can then use the machine spatial data received from the guidance system and intersect it with the planned pad geometry.</p>
+			<p>From this, it is possible to determine how long a machine worked within a specified rectangular pad area.</p>
+
+			<p>The basic workflow is:</p>
+			<ol>
+				<li>Assign a pad specification to the drill hole.</li>
+				<li>Optimise the pad orientation.</li>
+				<li>Export the planned pad geometry.</li>
+				<li>Send the geometry into the machine guidance system.</li>
+				<li>Receive machine spatial data.</li>
+				<li>Intersect the machine movements with the pad boundary.</li>
+				<li>Calculate the amount of time spent constructing the pad.</li>
+			</ol>
+			<p>This creates a direct link between what was planned and what actually occurred in the field.</p>
+
+			<h2>Building a construction duration model</h2>
+			<p>The existing workflow gives us the ability to calculate the construction duration for completed pads.</p>
+			<p>The next goal is to use this historical data, along with the variables described above, to develop a more accurate method for forecasting future pad construction times.</p>
+			<p>Each completed pad can be assigned a number of variables, including:</p>
+			<ul>
+				<li>terrain category;</li>
+				<li>average slope;</li>
+				<li>terrain variability;</li>
+				<li>pad length and width;</li>
+				<li>total pad area;</li>
+				<li>rig type;</li>
+				<li>contractor or asset;</li>
+				<li>estimated cut volume;</li>
+				<li>estimated fill volume;</li>
+				<li>cut-to-fill ratio;</li>
+				<li>distance to an existing track;</li>
+				<li>ground hardness;</li>
+				<li>cavity risk;</li>
+				<li>sump requirement;</li>
+				<li>equipment availability;</li>
+				<li>broad operator experience.</li>
+			</ul>
+			<p>These variables can then be compared against the recorded construction duration.</p>
+			<p>The most simple approach would be to create a baseline construction duration for a standard pad and then apply multipliers based on the relevant conditions.</p>
+			<blockquote>Forecast duration = base pad duration × terrain multiplier × pad size multiplier × cut and fill multiplier × access multiplier</blockquote>
+			<p>A standard pad in flat terrain may have a multiplier close to one.</p>
+			<p>A large diamond pad in steep terrain, requiring substantial cut and fill and located away from an existing track, would have a much higher combined multiplier.</p>
+			<p>It may ultimately be more appropriate to use a machine-learning or regression model rather than manually defined multipliers. However, the multiplier approach remains useful because it is easy to understand and explain to planners and operational teams.</p>
+			<p>The model should not simply return a number. It should also show which variables are driving the forecast.</p>
+			<p>For example, it may state that a pad is expected to take longer because it is located in steep terrain, requires a larger diamond rig footprint, has a high estimated cut volume or is located a significant distance from the existing track network.</p>
+			<p>This is important because the output needs to be understandable and trusted by the people using it.</p>
+
+			<h2>Separating machine time from total duration</h2>
+			<p>One of the challenges will be defining exactly what is meant by pad construction time.</p>
+			<p>There is a difference between the amount of time a machine is physically working within the pad and the total elapsed time between construction starting and the pad being completed.</p>
+			<p>For example, an excavator may work on the pad for several hours and then leave while waiting for a dozer. The pad may not be completed until the following day.</p>
+			<p>The machine working time may be relatively short, while the total construction duration is much longer.</p>
+			<p>Both measurements are useful. Machine working time helps estimate actual equipment effort and cost. Total elapsed duration is more relevant when building a drill schedule and determining when the pad will be ready for the rig.</p>
+			<p>The finished workflow will therefore need to distinguish between:</p>
+			<ul>
+				<li>excavator working time;</li>
+				<li>dozer working time;</li>
+				<li>total machine working time;</li>
+				<li>inactive or waiting time;</li>
+				<li>total elapsed construction duration.</li>
+			</ul>
+			<p>Understanding these differences may also highlight scheduling inefficiencies which are not directly related to the difficulty of constructing the pad.</p>
+
+			<h2>The longer-term outcome</h2>
+			<p>The intention is to create a workflow that continuously improves as more pads are constructed.</p>
+			<p>Each completed pad provides another example containing the planned geometry, expected construction conditions, equipment movements, actual construction duration and difference between forecast and actual duration.</p>
+			<p>The forecasting model can then be regularly recalibrated using this additional data.</p>
+			<p>Over time, the output could provide:</p>
+			<ul>
+				<li>an expected pad construction duration;</li>
+				<li>a confidence range;</li>
+				<li>the main variables influencing the estimate;</li>
+				<li>pads that require manual assessment;</li>
+				<li>the likely equipment sequence;</li>
+				<li>the expected date the pad will be available for drilling;</li>
+				<li>comparisons between planned and actual performance.</li>
+			</ul>
+			<p>The aim is not to suggest that every construction variable can be predicted perfectly.</p>
+			<p>Unexpected ground conditions, equipment breakdowns, access restrictions and weather will always affect earthworks.</p>
+			<p>The aim is to move away from applying the same broad assumptions to every pad when the majority of the important variables can already be measured or estimated.</p>
+			<p>The question of how long it takes to build a drill pad does not have a single answer.</p>
+			<p>It depends on the terrain, the rig, the pad dimensions, the amount of cut and fill, the access, the equipment and the people completing the work.</p>
+			<p>However, by connecting GIS planning data with machine spatial data, it should be possible to provide a much better answer than we can today.</p>
+		</main>
+
+		<footer><a href="/">← back home</a></footer>
+	</div>
+</Layout>
+
+<style>
+	:global(*) { box-sizing: border-box; }
+	:global(html) { background: #000; color: #fff; font-family: "Courier New", Courier, monospace; }
+	:global(body) { margin: 0; background: #000; }
+	:global(a) { color: #fff; text-decoration: underline; text-underline-offset: 2px; }
+	.site { width: min(780px, calc(100% - 40px)); min-height: 100vh; margin: 0 auto; padding: 24px 0 32px; }
+	header { padding-bottom: 14px; border-bottom: 1px dashed #777; }
+	nav { display: flex; justify-content: flex-end; gap: 10px; font-size: 15px; }
+	main { padding: 48px 0; }
+	.date { color: #aaa; margin-bottom: 20px; }
+	h1 { margin: 0 0 12px; font-size: 24px; line-height: 1.4; }
+	.subtitle, .section-intro { color: #bbb; font-style: italic; }
+	h2 { margin-top: 42px; font-size: 17px; line-height: 1.5; }
+	h3 { margin-top: 30px; font-size: 15px; }
+	p, li, blockquote { max-width: 720px; font-size: 15px; line-height: 1.75; }
+	ul, ol { max-width: 720px; padding-left: 24px; }
+	li { margin-bottom: 7px; }
+	blockquote { margin: 26px 0; padding: 14px 18px; border-left: 2px solid #fff; color: #ddd; }
+	.image-figure { max-width: 720px; margin: 34px 0; padding: 0; }
+	.image-figure img { display: block; width: 100%; height: auto; border: 2px solid #fff; }
+	.image-figure figcaption { margin-top: 10px; color: #aaa; font-size: 12px; line-height: 1.6; }
+	footer { padding-top: 16px; border-top: 1px dashed #777; font-size: 15px; }
+	@media (max-width: 620px) {
+		.site { width: min(100% - 24px, 780px); }
+		nav { justify-content: flex-start; flex-wrap: wrap; }
+		main { padding: 34px 0; }
+	}
+</style>
