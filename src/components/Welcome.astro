@@ -139,7 +139,8 @@ const entries = [
 
 	.entry {
 		display: grid;
-		grid-template-columns: 18px 120px 1fr;
+		grid-template-columns: 18px max-content minmax(0, 1fr);
+		column-gap: 10px;
 		align-items: baseline;
 		font-size: 15px;
 		line-height: 1.5;
