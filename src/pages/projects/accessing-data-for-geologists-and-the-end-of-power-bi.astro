@@ -1,0 +1,197 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+	title="Accessing data for geologists and the end of Power BI"
+	description="How governed conversational access to geological and operational data could change reporting, interpretation and field geology."
+>
+	<div class="site">
+		<header>
+			<nav>
+				<a href="/">home</a>
+				<span>/</span>
+				<a href="/about">about</a>
+				<span>/</span>
+				<a href="/projects-to-date">projects to date</a>
+			</nav>
+		</header>
+
+		<main>
+			<p class="date">[ 2026-07-26 ]</p>
+			<h1>Accessing data for geologists and the end of Power BI</h1>
+			<p class="subtitle">What happens when geological data becomes accessible enough to question?</p>
+
+			<p>What I have noticed at work is that raw geological data is not particularly scarce. The quality varies drastically, and it is often stored in irritating places, but it generally exists. Where it does not exist, large operations with sufficient capital can normally acquire it.</p>
+			<p>The range of quantitative data available to a drilling department is vast: assays, geological logs, downhole geophysics, surveys, drilling activity, machine telemetry, photographs and operational notes. In some cases, new data is collected every few seconds.</p>
+			<p>Despite this, I suspect only a small proportion of it is regularly used.</p>
+			<p>The problem is therefore not necessarily the availability of data. It is our ability to find, combine and interpret it while a decision still matters.</p>
+
+			<h2>The limits of reporting</h2>
+			<p>The traditional approach to making operational data available is through platforms such as Power BI and Tableau. These are useful for formal reporting, agreed metrics and repeated questions.</p>
+			<p>The problem is that reports are generally built to answer a specific question.</p>
+			<p>Someone wants monthly drilled metres, so a report is created. Someone else wants the same figure by contractor, project or drilling method, so another page is added. Another user wants downtime, expenditure or hole-completion information, and the report grows again.</p>
+			<p>This requires a significant amount of technical time. It also creates an increasingly fragile reporting hierarchy. Geological and operational datasets change frequently: fields are renamed, classifications evolve, relationships are modified and new sources are introduced.</p>
+			<p>A report may stop working, or continue working while producing an incomplete result.</p>
+			<p>More importantly, a dashboard can only answer questions that someone anticipated when it was built.</p>
+
+			<h2>Finding a column is not understanding it</h2>
+			<p>Natural-language data tools are beginning to make it easier to locate tables, generate queries and retrieve information. This is useful, but finding a field is not the same as understanding what it represents.</p>
+			<p>A system may find a column called <code>Fe_pct</code> and correctly identify that it contains iron assay values.</p>
+			<p>It does not automatically understand how changes in <code>Fe_pct</code> could influence the final depth of a metallurgical diamond hole. It does not know whether the hole is attempting to collect representative material across a mineralised interval, investigate variability near a geological boundary or provide sufficient sample mass for testwork.</p>
+			<p>It also does not automatically understand how an RC drilling programme may be designed around the same value. Depending on the purpose of the programme, <code>Fe_pct</code> may influence hole spacing, infill priorities, target boundaries, sample interpretation or decisions about where additional drilling is required.</p>
+			<p>The value can be found easily. Its significance depends on geological context, programme objectives and the decisions being made.</p>
+			<p>A technically correct query can therefore still produce a geologically meaningless answer.</p>
+			<p>This is why I think the important problem is not only data access. It is interpretation.</p>
+
+			<h2>Making data conversational</h2>
+			<p>I have recently been experimenting with a natural-language interface over governed geological and operational datasets.</p>
+
+			<figure class="flow-figure">
+				<div class="flowchart" role="img" aria-label="A user question is routed by an MCP to the relevant subject model, translated into SQL, executed through a read-only tool and returned for interpretation.">
+					<div class="flow-step">
+						<span class="step-label">01</span>
+						<strong>User asks a question</strong>
+						<small>Natural language</small>
+					</div>
+					<div class="flow-arrow" aria-hidden="true">↓</div>
+					<div class="flow-step flow-step-wide">
+						<span class="step-label">02</span>
+						<strong>MCP selects the relevant subject model</strong>
+						<div class="model-grid">
+							<span>Earthworks</span>
+							<span>Drill-hole collars</span>
+							<span>Diamond geology</span>
+							<span>RC geology</span>
+							<span>Geophysics</span>
+							<span>Restricted commercial data</span>
+						</div>
+					</div>
+					<div class="flow-arrow" aria-hidden="true">↓</div>
+					<div class="flow-step">
+						<span class="step-label">03</span>
+						<strong>Question is interpreted</strong>
+						<small>SQL is generated</small>
+					</div>
+					<div class="flow-arrow" aria-hidden="true">↓</div>
+					<div class="flow-step">
+						<span class="step-label">04</span>
+						<strong>Read-only query is executed</strong>
+						<small>Existing user permissions apply</small>
+					</div>
+					<div class="flow-arrow" aria-hidden="true">↓</div>
+					<div class="flow-step">
+						<span class="step-label">05</span>
+						<strong>Results return to the AI</strong>
+						<small>Interpretation and presentation</small>
+					</div>
+				</div>
+				<figcaption>The MCP acts as a controlled bridge between the AI and domain-specific datasets. The AI does not directly browse the database: a semantic model translates the question into SQL, which is executed through a separate read-only tool using the user’s existing permissions.</figcaption>
+			</figure>
+
+			<p>The intention is relatively simple: instead of requiring someone to locate the correct report, application or table, they can ask a direct question.</p>
+			<div class="question-list">
+				<p>Which holes were completed this week?</p>
+				<p>Where are machines repeatedly losing positioning quality?</p>
+				<p>What were the main causes of downtime on a particular rig?</p>
+				<p>Did a change in drilling performance correspond with a geological boundary?</p>
+				<p>Can informal field reports be compared with machine telemetry to identify a recurring equipment problem?</p>
+			</div>
+			<p>Some of these questions require a simple aggregation. Others require spatial analysis, chronological reconstruction, free-text interpretation or the combination of several datasets.</p>
+			<p>This is where the approach becomes more interesting than simply replacing SQL with a chatbot.</p>
+			<p>When access becomes easier, users do not necessarily ask for more KPIs. They begin asking about chronology, relationships, causes and uncertainty.</p>
+
+			<h2>The semantic layer matters more than the interface</h2>
+			<p>Natural language makes a system easier to use, but it does not remove the underlying complexity.</p>
+			<p>If anything, it makes data governance more important.</p>
+			<p>A conversational system needs to understand which fields should be used, how tables relate to each other and what common terminology means. It needs to distinguish between planned, reported and validated metres. It needs to understand whether a blank value represents missing data or a genuine absence of activity.</p>
+			<p>It must also know what data a specific user should be able to access, including the use of dedicated semantic models for sensitive schemas.</p>
+			<p>It should know when it does not have enough information.</p>
+			<p>Operational notes may be incomplete. A machine may stop transmitting. A hole may have several identifiers across different systems. A status date may represent the current status rather than the full history of changes.</p>
+			<blockquote>Access without interpretation is simply a faster route to the wrong answer.</blockquote>
+			<p>Every question that cannot be answered also exposes something useful. It may identify a missing dataset, an unclear relationship or knowledge that currently exists only in the head of an experienced employee.</p>
+			<p>In that sense, conversational access can become an audit of how well an organisation actually understands its own data.</p>
+
+			<h2>How could this change field geology?</h2>
+			<p>Field geologists collect large amounts of information but often have limited time to investigate the wider context surrounding an observation.</p>
+			<p>A geologist may notice an unexpected change in penetration rate, an unusual contact, a deviation in hole trajectory or a recurring drilling issue. Investigating it properly may require retrieving surveys, nearby logs, assays, photographs, drilling records and written shift notes from several systems.</p>
+			<p>In practice, that investigation may not happen immediately. The observation is recorded and work continues.</p>
+			<p>Accessible, interpreted data could shorten the distance between an observation and a testable question.</p>
+			<p>A geologist could ask whether the same drilling signature appeared in nearby holes, whether it corresponds with a logged geological boundary, whether similar intervals returned different assay results or whether the same issue had previously been reported by another crew.</p>
+			<p>This does not replace geological judgement.</p>
+			<p>The system did not stand at the rig, inspect the chips or core, speak to the driller or understand why an observation felt unusual.</p>
+			<p>What it can do is make more of the surrounding evidence available at the moment that judgement is being applied.</p>
+			<div class="inline-flow" aria-label="Field observation to revised interpretation workflow">
+				<span>field observation</span><b>→</b><span>question</span><b>→</b><span>supporting evidence</span><b>→</b><span>revised interpretation</span>
+			</div>
+			<p>If less time is spent locating information and reconciling systems, the role of the geologist may move further towards testing hypotheses and interpreting uncertainty.</p>
+			<p>The geologist does not become less important. Their ability to ask a meaningful question becomes more important.</p>
+
+			<h2>From answering questions to noticing patterns</h2>
+			<p>The next step may be systems that do not wait for someone to ask.</p>
+			<p>New records could be checked automatically for unusual conditions through data streams. Changes in drilling performance could be compared with previous holes. Incoming assay data could be assessed against geological expectations. Repeated equipment behaviour could be compared with earlier failures.</p>
+			<p>Instead of receiving a basic threshold alert, a user could receive an interpreted explanation of what changed, where it occurred and which evidence supports the conclusion.</p>
+			<p>There is an obvious risk here. Poorly designed systems could generate excessive notifications, exaggerate weak relationships or create confidence in incomplete data.</p>
+			<p>The objective should not be to tell people everything contained in a dataset. It should be to identify the small number of patterns that deserve human attention.</p>
+
+			<h2>Better questions, not just faster answers</h2>
+			<p>I initially viewed conversational access mainly as a way to reduce reliance on static reports.</p>
+			<p>I now think the more interesting outcome may be the questions that become possible once datasets are easier to access and interpret.</p>
+			<div class="question-list">
+				<p>What relationships have never been investigated because the relevant data sits in separate systems?</p>
+				<p>Could machine telemetry become a geological dataset rather than being viewed only as an operational one?</p>
+				<p>How much field knowledge could be shared if it were captured as context rather than remaining with individuals?</p>
+				<p>Will easier access improve geological decisions, or simply increase confidence in imperfect information?</p>
+			</div>
+			<p>The most valuable outcome may not be a better way of producing reports. It may be a change in how geologists interact with the evidence surrounding their work.</p>
+			<p>The question is no longer simply whether AI can query geological data.</p>
+			<p>It is what field geologists might notice when that data becomes accessible enough to question.</p>
+		</main>
+
+		<footer><a href="/">← back home</a></footer>
+	</div>
+</Layout>
+
+<style>
+	:global(*) { box-sizing: border-box; }
+	:global(html) { background: #000; color: #fff; font-family: "Courier New", Courier, monospace; }
+	:global(body) { margin: 0; background: #000; }
+	:global(a) { color: #fff; text-decoration: underline; text-underline-offset: 2px; }
+	.site { width: min(780px, calc(100% - 40px)); min-height: 100vh; margin: 0 auto; padding: 24px 0 32px; }
+	header { padding-bottom: 14px; border-bottom: 1px dashed #777; }
+	nav { display: flex; justify-content: flex-end; gap: 10px; font-size: 15px; }
+	main { padding: 48px 0; }
+	.date { color: #aaa; margin-bottom: 20px; }
+	h1 { margin: 0 0 12px; font-size: 24px; line-height: 1.4; }
+	.subtitle { color: #bbb; font-style: italic; margin-bottom: 34px; }
+	h2 { margin-top: 44px; font-size: 17px; line-height: 1.5; }
+	p, li, blockquote { max-width: 720px; font-size: 15px; line-height: 1.75; }
+	code { padding: 1px 5px; border: 1px solid #555; font-family: inherit; font-size: 0.92em; }
+	blockquote { margin: 28px 0; padding: 14px 18px; border-left: 2px solid #fff; color: #ddd; }
+	.flow-figure { max-width: 720px; margin: 34px 0; }
+	.flowchart { padding: 22px; border: 1px dashed #777; background: #050505; }
+	.flow-step { position: relative; padding: 18px 18px 16px 58px; border: 1px solid #888; }
+	.flow-step strong, .flow-step small { display: block; }
+	.flow-step strong { font-size: 14px; line-height: 1.5; }
+	.flow-step small { margin-top: 5px; color: #aaa; font-size: 12px; line-height: 1.5; }
+	.step-label { position: absolute; top: 17px; left: 16px; color: #777; font-size: 12px; }
+	.flow-arrow { padding: 8px 0; color: #888; text-align: center; }
+	.model-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; margin-top: 13px; }
+	.model-grid span { padding: 7px 9px; border: 1px dashed #555; color: #bbb; font-size: 11px; line-height: 1.4; }
+	.flow-figure figcaption { margin-top: 12px; color: #aaa; font-size: 12px; line-height: 1.65; }
+	.question-list { margin: 26px 0; padding: 4px 0 4px 18px; border-left: 1px dashed #777; }
+	.question-list p { margin: 10px 0; color: #ddd; font-style: italic; }
+	.inline-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; max-width: 720px; margin: 28px 0; padding: 16px; border: 1px dashed #777; font-size: 13px; line-height: 1.5; }
+	.inline-flow span { padding: 6px 8px; border: 1px solid #555; }
+	.inline-flow b { color: #888; }
+	footer { padding-top: 16px; border-top: 1px dashed #777; font-size: 15px; }
+	@media (max-width: 620px) {
+		.site { width: min(100% - 24px, 780px); }
+		nav { justify-content: flex-start; flex-wrap: wrap; }
+		main { padding: 34px 0; }
+		model-grid { grid-template-columns: 1fr; }
+		.model-grid { grid-template-columns: 1fr; }
+		.flowchart { padding: 14px; }
+		.flow-step { padding-left: 50px; }
+	}
+</style>
