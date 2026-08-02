@@ -7,28 +7,55 @@ const years = [
 		{
 			title: 'End-of-hole chart and assay review tool',
 			sections: [
-				{ subtitle: 'Problem', description: 'The metallurgical stakeholders wanted core photography presented alongside assays and hole logging for every completed hole' },
-				{ subtitle: 'Solution', description: 'Built an automated tool for producing end-of-hole charts and reviewing assay information. Incorporates and aligns photos, logging, assays, and Geophysics whilst accounting for differences between RC and Diamond RL's.'},
-				{ subtitle: 'Outcome', description: 'PDF output attached to all completed hole emails.'
+				{
+					subtitle: 'Problem',
+					description: 'The metallurgical stakeholders wanted core photography presented alongside assays and hole logging for every completed hole.'
+				},
+				{
+					subtitle: 'Solution',
+					description: 'Built an automated tool for producing end-of-hole charts and reviewing assay information. Incorporates and aligns photos, logging, assays and geophysics while accounting for differences between RC and diamond RLs.'
+				},
+				{
+					subtitle: 'Outcome',
+					description: 'PDF output attached to all completed-hole emails.'
+				}
 			]
 		},
 		{
 			title: 'Downhole gamma and stratigraphic correlation calculator',
 			sections: [
-				{ subtitle: 'Problem', description: 'Common part of Diamond QAQC process is validating logging intervals with the Downhole Gamma trace against a standard. This is a time consuming process, and can be very subjective.'},
-				{ subtitle: 'Solution', description: 'Used simple regression model comparing raw gamma trace against converted standard, it would find the smallest error margin and validate that boundaries from standard aligned with logging.'},
-				{ subtitle: 'Outcome', description: 'Standard was too noisy, and the peak in gamma trace (indicative of shale) varied too much in scale between logs.'}
+				{
+					subtitle: 'Problem',
+					description: 'A common part of the diamond QAQC process is validating logging intervals against a standard using the downhole gamma trace. This is time-consuming and can be very subjective.'
+				},
+				{
+					subtitle: 'Solution',
+					description: 'Used a simple regression model to compare the raw gamma trace against a converted standard, find the smallest error margin and validate that the standard boundaries aligned with the logging.'
+				},
+				{
+					subtitle: 'Outcome',
+					description: 'The standard was too noisy, and the gamma peak indicative of shale varied too much in scale between logs.'
+				}
 			]
 		},
-		{ title: 'Historical disturbance and rehabilitation assessment', description: 'Combined database records, maps and aerial imagery to assess historical drilling disturbance and rehabilitation status.' }
+		{ title: 'Historical disturbance and rehabilitation assessment', description: 'Combined database records, maps and aerial imagery to assess historical drilling disturbance and rehabilitation status.' },
 		{
 			title: 'Created financial model to forecast net planned drill program costs',
 			sections: [
-				{ subtitle: 'Problem', description: 'CAPEX projects are billed to stakeholders internally, we had no way to estimate the cost of a program.'},
-				{ subtitle: 'Solution', description: 'Analysed historical drilling data, and built model that estimates drilling, personnel, flights, accomadation, fuel, earthworks, car/van rental (relevant for exploration programs) costs, and accounts for potential delays.'},
-				{ subtitle: 'Outcome', description: 'Excel model was used for the remained for the Financial Year, this was superceded by an Anaplan based tool.'}
+				{
+					subtitle: 'Problem',
+					description: 'CAPEX projects are billed to stakeholders internally; we had no way to estimate the cost of a program.'
+				},
+				{
+					subtitle: 'Solution',
+					description: 'Analysed historical drilling data and built a model that estimates drilling, personnel, flights, accommodation, fuel, earthworks and car or van rental costs relevant to exploration programs, while accounting for potential delays.'
+				},
+				{
+					subtitle: 'Outcome',
+					description: 'The Excel model was used for the remainder of the financial year before being superseded by an Anaplan-based tool.'
+				}
 			]
-		},
+		}
 	] },
 	{ year: '2024', entries: [
 		{ title: 'Enterprise geological QAQC automation platform', description: 'Developed a rules-based system for checking drilling and geological datasets, then re-engineered it from VBA into Python to improve speed, maintainability and scale.' },
