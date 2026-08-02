@@ -4,9 +4,13 @@ import Layout from '../layouts/Layout.astro';
 const years = [
 	{ year: '2023', entries: [
 		{ title: 'Metallurgical, Geophysics, Geotech, and RC logging', description: 'Learned core and chip logging workflows working closely with Acquire, Leapfrog, ArcPro, and Tableau.' },
-		{ title: 'End-of-hole chart and assay review tool', 
-			subtitle: 'Problem', description: 'A',	
-			subtitle: 'Solution', description: 'Built an automated tool for producing end-of-hole charts and reviewing assay information.' },
+		{
+			title: 'End-of-hole chart and assay review tool',
+			sections: [
+				{ subtitle: 'Problem', description: 'A' },
+				{ subtitle: 'Solution', description: 'Built an automated tool for producing end-of-hole charts and reviewing assay information.' }
+			]
+		},
 		{ title: 'Survey and geological-data preparation utilities', description: 'Developed utilities that reduced repetitive preparation before survey and geological information was loaded into enterprise systems.' },
 		{ title: 'Downhole gamma and stratigraphic correlation calculator', description: 'Developed an analytical tool linking gamma responses with logged stratigraphy to support geological interpretation and correlation.' },
 		{ title: 'Historical disturbance and rehabilitation assessment', description: 'Combined database records, maps and aerial imagery to assess historical drilling disturbance and rehabilitation status.' }
@@ -86,7 +90,16 @@ const years = [
 									<div class="marker" aria-hidden="true"></div>
 									<div>
 										<h3>{entry.title}</h3>
-										<p>{entry.description}</p>
+										{'sections' in entry ? (
+											entry.sections.map((section) => (
+												<div class="project-section">
+													<h4>{section.subtitle}</h4>
+													<p>{section.description}</p>
+												</div>
+											))
+										) : (
+											<p>{entry.description}</p>
+										)}
 									</div>
 								</article>
 							))}
@@ -186,6 +199,19 @@ const years = [
 	h3 {
 		margin: 0 0 7px;
 		font-size: 15px;
+		line-height: 1.45;
+	}
+	.project-section {
+		margin: 0 0 14px;
+	}
+	.project-section:last-child {
+		margin-bottom: 0;
+	}
+	.project-section h4 {
+		margin: 0 0 4px;
+		color: #ddd;
+		font-size: 14px;
+		font-weight: bold;
 		line-height: 1.45;
 	}
 	.project-entry p {
