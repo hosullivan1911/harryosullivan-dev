@@ -101,33 +101,140 @@ const years = [
 		{ title: 'Live project-completion reporting', description: 'Developed a reporting concept that progressively populated project-completion information from live operational and QAQC data.' },
 		{ title: 'Tableau-to-Power BI transition', description: 'Contributed to the department-wide transition from Tableau to Power BI by building approximately 20 diamond-drilling reports.' }
 	] },
-	{ year: '2025', entries: [
-		{ title: 'AI drill-core photo classification', description: 'Coordinated an AI project to recognise and classify information from core photographs, including the creation of review datasets and a validation workflow.' },
-		{ title: 'Core-photo metadata automation', description: 'Developed a workflow concept for extracting depth and related metadata from core photographs to reduce manual indexing and improve searchability.' },
-		{ title: 'Geoscience AI use-case portfolio', description: 'Identified and developed practical AI use cases across drilling, geology, earthworks, imagery and operational data.' },
-		{ title: 'Terrain and drill-access analytics', description: 'Developed methods for classifying terrain and slope conditions to support drilling access, pad design and earthworks planning.' },
-		{ title: 'Geospatial planning automation suite', description: 'Developed GIS scripts that combined planning datasets, proposed drillholes and spatial assignment information.' },
-		{ title: 'Drillhole orientation optimiser', description: 'Built a Python toolbox for optimising drillhole orientations and released it for operational testing.' },
-		{ title: 'Equipment telemetry for earthworks analytics', description: 'Assessed whether heavy-equipment telemetry could improve earthworks forecasting and equipment-performance analysis.' },
-		{ title: 'Spatial-boundary breach prediction', description: 'Developed a machine-learning prototype using rolling behavioural features to identify equipment at elevated risk of crossing an approved work boundary.' }
-	] },
-	{ year: '2026', entries: [
-		{ title: 'AI-supported drill-pad optimiser', description: 'Developed an AI-supported approach to drill-pad orientation and optimisation using geological, terrain and earthworks inputs.' },
-		{ title: 'Planning-to-execution integration', description: 'Explored how pad-optimisation outputs could connect with operational planning and machine-guidance systems.' },
-		{ title: 'Agentic density-hole planner', description: 'Developed an agentic AI workflow for assisting with density-hole program design while retaining deterministic geological and operational checks.' },
-		{ title: 'RC twin scoring model', description: 'Developed a traceable scoring concept for assessing possible RC twin holes and supporting density planning.' },
-		{ title: 'Geophysics AI program designer', description: 'Built an agentic AI application that queried governed data, applied spatial and geological checks, and proposed candidate drilling programs for user review.' },
-		{ title: 'AI governance and delivery framework', description: 'Established a structured portfolio of geoscience AI projects with clear ownership, testing and validation responsibilities.' },
-		{ title: 'Natural-language geological analytics', description: 'Developed a semantic layer and conversational analyst capable of answering natural-language questions across drilling, geology and QAQC information.' },
-		{ title: 'Conversational operational-data interface', description: 'Helped develop a governed conversational interface that allowed users to interrogate operational and geological data without manually searching multiple reports and systems.' },
-		{ title: 'Operational-intelligence workflow', description: 'Combined activity, production, equipment and operator information to investigate operational performance and distinguish between allocation, task and equipment-related constraints.' },
-		{ title: 'Governed cross-system data integration', description: 'Coordinated internal and external technical teams to establish a governed proof of concept for sharing operational data between systems.' },
-		{ title: 'Multimodal geological QAQC', description: 'Developed a concept combining geological logging, structured QAQC information, comparison holes and core imagery within a conversational analysis workflow.' },
-		{ title: 'Rapid internal application pilot', description: 'Participated in a pilot to test rapid development and deployment of lightweight internal applications against governed geoscience data.' },
-		{ title: 'Real-time geological data-quality notifications', description: 'Built event-driven monitoring that identifies bespoke data-quality conditions and sends notifications within seconds of new records entering the governed database.' },
-		{ title: 'AI-summarised notification agents', description: 'Extended the real-time notification framework into an end-to-end agent workflow: governed data events are converted into structured messages, summarised through an AI model, delivered to the intended user in Teams, and recorded in an audit trail with the delivery time and recipient.' },
-		{ title: 'WhatsApp operational fault-pattern analysis', description: 'Analysed WhatsApp support conversations alongside equipment telemetry to identify recurring fault patterns, recognise early indicators of hardware and GNSS failure, and define practical automated monitoring rules.' }
-	] }
+	{
+		year: '2025',
+		milestones: [
+			{
+				date: 'March 2025',
+				title: 'Systems Specialist Geologist secondment',
+				description: 'Moved from field-based diamond drilling into a systems-focused secondment spanning geological data, automation, operational technology and AI.'
+			},
+			{
+				date: 'September 2025',
+				title: 'Permanent appointment offered',
+				description: 'Following the secondment, Fortescue formalised the work into a permanent Systems Geologist role and offered it to me.'
+			}
+		],
+		entries: [
+			{
+				title: 'GuidEx fleet deployment and operational intelligence',
+				sections: [
+					{
+						subtitle: 'Problem',
+						description: 'Fortescue needed better visibility of earthworks assets operating in the field. The previous machine-guidance system did not provide sufficient positional accuracy, while operators needed a clearer in-cab view of permitted work areas and warnings near operational boundaries. When I assumed responsibility for GuidEx, hardware had been installed on approximately 10 of the intended 65 machines, and the supporting data, integration, support and analytical workflows were not yet established.'
+					},
+					{
+						subtitle: 'Solution',
+						description: 'Led deployment across 65 assets, five operational sites, four contracting companies and approximately 300 contractors. Managed installation logistics and troubleshooting, created a ServiceNow support workflow, contributed to GIS package generation, and built the Snowflake backend and applications required to ingest GuidEx logs. Developed an application for producing the SQLite pad-database component and led earthworks analysis by intersecting machine logs with pad and boundary geometries. The work later expanded into investigating Starlink connectivity and the business case for reducing physical flagging.'
+					},
+					{
+						subtitle: 'Outcome',
+						description: 'GuidEx was installed across all 65 assets and adopted across the five sites. It now provides operators with clearer spatial guidance and gives the business substantially improved visibility of field activity. Machine-generated data has also been reconciled against contractor-charged timesheets, enabling material cost recovery and creating a foundation for further connected-machine workflows and operational analytics.'
+					}
+				]
+			},
+			{
+				title: 'AI-enabled drill-core image cataloguing',
+				sections: [
+					{
+						subtitle: 'Problem',
+						description: 'Approximately 40,000 drill-core photographs were stored in OneDrive, making the archive slow to navigate, difficult to access consistently and unsuitable for systematic analysis. Metadata including hole ID, depth-from, depth-to and core loss was written on each tray rather than stored as structured data, leaving the photographs neither readily searchable nor AI-ready.'
+					},
+					{
+						subtitle: 'Solution',
+						description: 'Independently designed and built an automated image-cataloguing workflow. Tested conventional OCR and several AI models, then developed cropping, preprocessing and formatting logic to improve metadata extraction. Built the workflow for transferring new photographs automatically into the internal catalogue and incorporated an OpenAI-powered Python node to extract and structure metadata during ingestion. ServiceNow manages catalogue viewing and editing permissions.'
+					},
+					{
+						subtitle: 'Outcome',
+						description: 'Approximately 20,000 photographs have been uploaded into the catalogue, with metadata extraction achieving approximately 93% accuracy. New photographs now enter automatically, while a plan has been agreed with the site team for processing the remaining archive. The next stage is to use the extracted metadata to prepopulate selected fields in Acquire for geological review.'
+					}
+				]
+			},
+			{ title: 'Geoscience AI use-case portfolio', description: 'Identified and developed practical AI use cases across drilling, geology, earthworks, imagery and operational data.' },
+			{ title: 'Terrain and drill-access analytics', description: 'Developed methods for classifying terrain and slope conditions to support drilling access, pad design and earthworks planning.' },
+			{ title: 'Geospatial planning automation suite', description: 'Developed GIS scripts that combined planning datasets, proposed drillholes and spatial assignment information.' },
+			{
+				title: 'AI-supported vertical drill-pad optimiser',
+				sections: [
+					{
+						subtitle: 'Problem',
+						description: 'For vertical drillholes, the pad has no operationally required azimuth, creating an opportunity to reduce earthworks cut-and-fill volumes by optimising its orientation. Manually testing numerous orientations against terrain data was impractical and required considerable project-geologist time.'
+					},
+					{
+						subtitle: 'Solution',
+						description: 'Built an ArcGIS Pro Python toolbox that uses planned drillhole coordinates and a user-provided digital elevation model. The tool runs hundreds of possible pad orientations and compares their earthworks requirements to identify lower cut-and-fill candidates. It then uses aerial imagery and an OpenAI vision model to constrain the final candidates to orientations compatible with existing earthworks tracks. The method is deliberately limited to vertical holes, where pad orientation does not conflict with a required drilling azimuth.'
+					},
+					{
+						subtitle: 'Outcome',
+						description: 'The optimiser is used operationally and saves approximately six hours of manual work per week for each project geologist using it. It provides a repeatable method for identifying practical, potentially lower-cost pad orientations before construction planning begins.'
+					}
+				]
+			}
+		]
+	},
+	{
+		year: '2026',
+		entries: [
+			{
+				title: 'Multi-agent density drilling program designer',
+				sections: [
+					{
+						subtitle: 'Problem',
+						description: 'Business stakeholders assigned Resource Definition a substantial new body of work: designing density drilling programs to address uncertainty within geological models. The programs needed to target geozones with insufficient density information while accounting for geological coverage, spatial variability, access constraints, heritage restrictions and drilling cost.'
+					},
+					{
+						subtitle: 'Solution',
+						description: 'Independently built a web application that queries validated, Vulcan-generated geozone data and lets the user identify parts of the model with the lowest density confidence. After applying heritage and land-use constraints, four specialist agents consider sample variability, geozone coverage, multi-zone drillhole opportunities and minimising the total number of holes. A fifth master agent evaluates their recommendations and produces a proposed program. Geologists can veto individual holes and rerun the workflow.'
+					},
+					{
+						subtitle: 'Outcome',
+						description: 'The application remains in testing, so operational savings have not yet been claimed. Implementation and further testing have been incorporated into a project geologist’s FY27 KPI, establishing formal ownership for progressing the workflow toward operational use.'
+					}
+				]
+			},
+			{ title: 'RC twin scoring model', description: 'Developed a traceable scoring concept for assessing possible RC twin holes and supporting density planning.' },
+			{ title: 'AI governance and delivery framework', description: 'Established a structured portfolio of geoscience AI projects with clear ownership, testing and validation responsibilities.' },
+			{
+				title: 'Governed conversational geological analytics',
+				sections: [
+					{
+						subtitle: 'Problem',
+						description: 'Geological and operational data was available across assays, drillhole logs, geophysics, surveys, drilling activity, machine telemetry, photographs and field notes, but users still needed to locate the correct report, application or database table. Dashboards answered questions anticipated in advance, while new or cross-disciplinary questions required additional technical work.'
+					},
+					{
+						subtitle: 'Solution',
+						description: 'Developed a natural-language interface over governed datasets. An MCP layer routes each question to the relevant semantic model, including earthworks, drillhole collars, diamond geology, RC geology, geophysics and restricted commercial data. The semantic layer defines fields, relationships and terminology before generating SQL. Queries run through a read-only tool using the user’s existing permissions, and the results return to the AI for interpretation and presentation.'
+					},
+					{
+						subtitle: 'Outcome',
+						description: 'The functioning system includes all planned semantic models and is being trialled by 25 users. It has completed cross-domain analyses such as comparing changes in headcount with achieved drilling metres over the previous two years, allowing users to investigate questions that would otherwise require several reports or systems.'
+					}
+				]
+			},
+			{ title: 'Operational-intelligence workflow', description: 'Combined activity, production, equipment and operator information to investigate operational performance and distinguish between allocation, task and equipment-related constraints.' },
+			{ title: 'Governed cross-system data integration', description: 'Coordinated internal and external technical teams to establish a governed proof of concept for sharing operational data between systems.' },
+			{ title: 'Multimodal geological QAQC', description: 'Developed a concept combining geological logging, structured QAQC information, comparison holes and core imagery within a conversational analysis workflow.' },
+			{ title: 'Rapid internal application pilot', description: 'Participated in a pilot to test rapid development and deployment of lightweight internal applications against governed geoscience data.' },
+			{
+				title: 'Real-time AI-assisted geological data-quality monitoring',
+				sections: [
+					{
+						subtitle: 'Problem',
+						description: 'A significant data error was discovered during a meeting with an external vendor. The existing process depended heavily on Power BI reports and site teams noticing problems manually, so a system was needed to screen incoming geological and operational data before errors reached downstream stakeholders.'
+					},
+					{
+						subtitle: 'Solution',
+						description: 'Independently built an event-driven workflow around Snowflake. Streams initiate deterministic threshold checks and machine-learning pattern recognition as new records arrive. Detected issues enter a pending-messages table, which a Python service checks every ten seconds. The service sends structured JSON to an OpenAI model, which produces a concise Teams-style message and can use an MCP interface to compare the issue with the wider governed dataset. Power Automate then routes the notification according to its classification, while an archive table records the result and delivery information.'
+					},
+					{
+						subtitle: 'Outcome',
+						description: 'The system is live for five notification types and delivers targeted alerts within approximately 15 seconds of data reaching Snowflake. Monitoring includes metres achieved per day, contractor-timesheet cost, missing PLOD data and GuidEx connection quality. It has already identified a genuine PLOD cost that was statistically unusual relative to metres drilled and drilling hours, shifting selected controls from retrospective review to near-real-time detection with an auditable history.'
+					}
+				]
+			},
+			{ title: 'WhatsApp operational fault-pattern analysis', description: 'Analysed WhatsApp support conversations alongside equipment telemetry to identify recurring fault patterns, recognise early indicators of hardware and GNSS failure, and define practical automated monitoring rules.' }
+		]
+	}
 ];
 ---
 
@@ -157,6 +264,18 @@ const years = [
 					<section class="year-block">
 						<h2>{group.year}</h2>
 						<div class="year-entries">
+							{'milestones' in group && (
+								<aside class="career-progression">
+									<p class="career-label">Career progression</p>
+									{group.milestones.map((milestone) => (
+										<div class="career-milestone">
+											<p class="career-date">{milestone.date}</p>
+											<h3>{milestone.title}</h3>
+											<p>{milestone.description}</p>
+										</div>
+									))}
+								</aside>
+							)}
 							{group.entries.map((entry) => (
 								<article class="project-entry">
 									<div class="marker" aria-hidden="true"></div>
@@ -243,6 +362,37 @@ const years = [
 		font-size: 16px;
 	}
 	.year-entries { position: relative; }
+	.career-progression {
+		margin: 0 0 34px 32px;
+		padding: 16px 18px;
+		border: 1px dashed #666;
+	}
+	.career-label {
+		margin: 0 0 18px;
+		color: #fff;
+		font-size: 12px;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+	.career-milestone + .career-milestone {
+		margin-top: 20px;
+		padding-top: 20px;
+		border-top: 1px dashed #444;
+	}
+	.career-date {
+		margin: 0 0 5px;
+		color: #888;
+		font-size: 12px;
+	}
+	.career-milestone h3 {
+		margin-bottom: 6px;
+	}
+	.career-milestone > p:last-child {
+		margin: 0;
+		color: #aaa;
+		font-size: 13px;
+		line-height: 1.6;
+	}
 	.year-entries::before {
 		content: "";
 		position: absolute;
@@ -305,5 +455,6 @@ const years = [
 		nav { justify-content: flex-start; flex-wrap: wrap; }
 		.year-block { grid-template-columns: 1fr; gap: 18px; }
 		h2 { position: static; }
+		.career-progression { margin-left: 32px; }
 	}
 </style>
