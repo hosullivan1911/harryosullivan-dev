@@ -9,15 +9,15 @@ const years = [
 			sections: [
 				{
 					subtitle: 'Problem',
-					description: 'The metallurgical stakeholders wanted core photography presented alongside assays and hole logging for every completed hole.'
+					description: 'Metallurgical stakeholders needed core photography, assays and geological logging presented together for every completed hole.'
 				},
 				{
 					subtitle: 'Solution',
-					description: 'Built an automated tool for producing end-of-hole charts and reviewing assay information. Incorporates and aligns photos, logging, assays and geophysics while accounting for differences between RC and diamond RLs.'
+					description: 'Built a tool aligning photography, logging, assays and geophysics while accounting for differences between RC and diamond holes.'
 				},
 				{
 					subtitle: 'Outcome',
-					description: 'Became the standard PDF output attached to completed-hole notifications, giving metallurgical stakeholders a consistent view of photography, logging, assays and geophysics. Approximately four holes are completed each week.'
+					description: 'Became the standard PDF attached to completed-hole notifications, supporting approximately four completed holes each week.'
 				}
 			]
 		},
@@ -26,15 +26,15 @@ const years = [
 			sections: [
 				{
 					subtitle: 'Problem',
-					description: 'A common part of the diamond QAQC process is validating logging intervals against a standard using the downhole gamma trace. This is time-consuming and can be very subjective.'
+					description: 'Validating diamond logging intervals against a standard using downhole gamma traces was slow and subjective.'
 				},
 				{
 					subtitle: 'Solution',
-					description: 'Used a simple regression model to compare the raw gamma trace against a converted standard, find the smallest error margin and validate that the standard boundaries aligned with the logging.'
+					description: 'Built a regression model comparing raw gamma traces with a converted standard to test whether geological boundaries aligned.'
 				},
 				{
 					subtitle: 'Outcome',
-					description: 'The standard was too noisy, and the gamma peak indicative of shale varied too much in scale between logs.'
+					description: 'Testing showed the standard was too noisy and gamma peaks varied too greatly between logs for reliable automation.'
 				}
 			]
 		},
@@ -44,15 +44,15 @@ const years = [
 			sections: [
 				{
 					subtitle: 'Problem',
-					description: 'CAPEX projects are billed to stakeholders internally; we had no way to estimate the cost of a program.'
+					description: 'Internally billed CAPEX drilling programs lacked a reliable method for forecasting total cost.'
 				},
 				{
 					subtitle: 'Solution',
-					description: 'Analysed historical drilling data and built a model that estimates drilling, personnel, flights, accommodation, fuel, earthworks and car or van rental costs relevant to exploration programs, while accounting for potential delays.'
+					description: 'Built an Excel model using historical data to estimate drilling, personnel, travel, accommodation, vehicle and earthworks costs, including delays.'
 				},
 				{
 					subtitle: 'Outcome',
-					description: 'The Excel model was used for the remainder of the financial year before being superseded by an Anaplan-based tool.'
+					description: 'Used for the remainder of the financial year before being superseded by an Anaplan-based tool.'
 				}
 			]
 		}
@@ -63,15 +63,15 @@ const years = [
 			sections: [
 				{
 					subtitle: 'Problem',
-					description: 'QAQC in geological workflows can be highly subjective, and I noticed that the quality of data provided to stakeholders varied significantly.'
+					description: 'Subjective QAQC produced inconsistent geological data quality for downstream stakeholders.'
 				},
 				{
 					subtitle: 'Solution',
-					description: 'Consulted with our orebody specialist to define 20 strict logging rules: a set of non-negotiable data requirements. Initially built an Excel macro that applied these rules to uploaded CSV logging data and highlighted issues. This later transitioned into a Power BI report reading directly from Snowflake.'
+					description: 'Defined 20 non-negotiable logging rules with an orebody specialist, then progressed the checker from an Excel macro to Power BI and Snowflake.'
 				},
 				{
 					subtitle: 'Outcome',
-					description: 'The tool was well received and remains in use. It has become an important part of senior geologists’ end-of-scope reporting.'
+					description: 'The tool remains in use and now supports senior geologists’ end-of-scope reporting.'
 				}
 			]
 		},
@@ -85,15 +85,15 @@ const years = [
 			sections: [
 				{
 					subtitle: 'Problem',
-					description: 'I was tasked with comparing monthly drilling invoices against submitted PLODs (timesheets) and recommending whether each invoice should be accepted. This was time-consuming and prone to human error.'
+					description: 'Monthly drilling invoices required manual comparison with submitted PLOD timesheets, creating a slow and error-prone approval process.'
 				},
 				{
 					subtitle: 'Solution',
-					description: 'Built a Python script that interpreted each drilling contractor’s invoice format and automatically reconciled claims against accepted PLOD data available through CorePlan.'
+					description: 'Built a Python script that interpreted contractor invoice formats and reconciled claims against accepted CorePlan PLOD data.'
 				},
 				{
 					subtitle: 'Outcome',
-					description: 'Used the tool throughout my time in the team, and it continued to be used after I moved on. It has since been replaced by a more sophisticated integrated tool. However, issues remain because the source PLOD data depends on field teams accepting costs correctly, which does not always occur.'
+					description: 'The tool remained in use after I left the team and was later replaced by a more sophisticated integrated system.'
 				}
 			]
 		},
@@ -121,15 +121,15 @@ const years = [
 				sections: [
 					{
 						subtitle: 'Problem',
-						description: 'Fortescue needed better visibility of earthworks assets operating in the field. The previous machine-guidance system did not provide sufficient positional accuracy, while operators needed a clearer in-cab view of permitted work areas and warnings near operational boundaries. When I assumed responsibility for GuidEx, hardware had been installed on approximately 10 of the intended 65 machines, and the supporting data, integration, support and analytical workflows were not yet established.'
+						description: 'Fortescue needed more accurate field-asset visibility and operator boundary warnings. When I took over GuidEx, only 10 of 65 machines had hardware installed.'
 					},
 					{
 						subtitle: 'Solution',
-						description: 'Led deployment across 65 assets, five operational sites, four contracting companies and approximately 300 contractors. Managed installation logistics and troubleshooting, created a ServiceNow support workflow, contributed to GIS package generation, and built the Snowflake backend and applications required to ingest GuidEx logs. Developed an application for producing the SQLite pad-database component and led earthworks analysis by intersecting machine logs with pad and boundary geometries. The work later expanded into investigating Starlink connectivity and the business case for reducing physical flagging.'
+						description: 'Led deployment across five sites, four contractors and approximately 300 users; built Snowflake ingestion, GIS and analytics workflows, plus ServiceNow-managed support.'
 					},
 					{
 						subtitle: 'Outcome',
-						description: 'GuidEx was installed across all 65 assets and adopted across the five sites. It now provides operators with clearer spatial guidance and gives the business substantially improved visibility of field activity. Machine-generated data has also been reconciled against contractor-charged timesheets, enabling material cost recovery and creating a foundation for further connected-machine workflows and operational analytics.'
+						description: 'All 65 assets adopted GuidEx. Its data improved operational visibility and enabled material cost recovery through reconciliation with contractor-charged timesheets.'
 					}
 				]
 			},
@@ -138,15 +138,15 @@ const years = [
 				sections: [
 					{
 						subtitle: 'Problem',
-						description: 'Approximately 40,000 drill-core photographs were stored in OneDrive, making the archive slow to navigate, difficult to access consistently and unsuitable for systematic analysis. Metadata including hole ID, depth-from, depth-to and core loss was written on each tray rather than stored as structured data, leaving the photographs neither readily searchable nor AI-ready.'
+						description: 'Approximately 40,000 core photographs sat in a slow OneDrive archive, with key metadata visible only as writing on the photographed trays.'
 					},
 					{
 						subtitle: 'Solution',
-						description: 'Independently designed and built an automated image-cataloguing workflow. Tested conventional OCR and several AI models, then developed cropping, preprocessing and formatting logic to improve metadata extraction. Built the workflow for transferring new photographs automatically into the internal catalogue and incorporated an OpenAI-powered Python node to extract and structure metadata during ingestion. ServiceNow manages catalogue viewing and editing permissions.'
+						description: 'Independently built an automated catalogue workflow using cropping, OCR testing and an OpenAI-powered Python node to extract and structure tray metadata.'
 					},
 					{
 						subtitle: 'Outcome',
-						description: 'Approximately 20,000 photographs have been uploaded into the catalogue, with metadata extraction achieving approximately 93% accuracy. New photographs now enter automatically, while a plan has been agreed with the site team for processing the remaining archive. The next stage is to use the extracted metadata to prepopulate selected fields in Acquire for geological review.'
+						description: 'Approximately 20,000 images are catalogued at 93% extraction accuracy. New images enter automatically, with future metadata integration planned for Acquire.'
 					}
 				]
 			},
@@ -158,15 +158,15 @@ const years = [
 				sections: [
 					{
 						subtitle: 'Problem',
-						description: 'For vertical drillholes, the pad has no operationally required azimuth, creating an opportunity to reduce earthworks cut-and-fill volumes by optimising its orientation. Manually testing numerous orientations against terrain data was impractical and required considerable project-geologist time.'
+						description: 'Vertical drillholes have no required pad azimuth, creating an opportunity to reduce earthworks cut-and-fill through orientation optimisation.'
 					},
 					{
 						subtitle: 'Solution',
-						description: 'Built an ArcGIS Pro Python toolbox that uses planned drillhole coordinates and a user-provided digital elevation model. The tool runs hundreds of possible pad orientations and compares their earthworks requirements to identify lower cut-and-fill candidates. It then uses aerial imagery and an OpenAI vision model to constrain the final candidates to orientations compatible with existing earthworks tracks. The method is deliberately limited to vertical holes, where pad orientation does not conflict with a required drilling azimuth.'
+						description: 'Built an ArcGIS Pro Python toolbox testing hundreds of orientations against a DEM, then using aerial imagery and OpenAI to favour existing access tracks.'
 					},
 					{
 						subtitle: 'Outcome',
-						description: 'The optimiser is used operationally and saves approximately six hours of manual work per week for each project geologist using it. It provides a repeatable method for identifying practical, potentially lower-cost pad orientations before construction planning begins.'
+						description: 'Used operationally, saving each project geologist approximately six hours per week while identifying practical, potentially lower-cost orientations.'
 					}
 				]
 			}
@@ -180,15 +180,15 @@ const years = [
 				sections: [
 					{
 						subtitle: 'Problem',
-						description: 'Business stakeholders assigned Resource Definition a substantial new body of work: designing density drilling programs to address uncertainty within geological models. The programs needed to target geozones with insufficient density information while accounting for geological coverage, spatial variability, access constraints, heritage restrictions and drilling cost.'
+						description: 'Resource Definition received a substantial new workload designing density programs around model uncertainty, geological coverage, constraints and drilling cost.'
 					},
 					{
 						subtitle: 'Solution',
-						description: 'Independently built a web application that queries validated, Vulcan-generated geozone data and lets the user identify parts of the model with the lowest density confidence. After applying heritage and land-use constraints, four specialist agents consider sample variability, geozone coverage, multi-zone drillhole opportunities and minimising the total number of holes. A fifth master agent evaluates their recommendations and produces a proposed program. Geologists can veto individual holes and rerun the workflow.'
+						description: 'Built a web app using validated Vulcan geozones, heritage and land-use constraints, four specialist planning agents and a master agent; geologists retain veto control.'
 					},
 					{
 						subtitle: 'Outcome',
-						description: 'The application remains in testing, so operational savings have not yet been claimed. Implementation and further testing have been incorporated into a project geologist’s FY27 KPI, establishing formal ownership for progressing the workflow toward operational use.'
+						description: 'Still in testing, with implementation and validation incorporated into a project geologist’s FY27 KPI to progress it toward operational use.'
 					}
 				]
 			},
@@ -199,15 +199,15 @@ const years = [
 				sections: [
 					{
 						subtitle: 'Problem',
-						description: 'Geological and operational data was available across assays, drillhole logs, geophysics, surveys, drilling activity, machine telemetry, photographs and field notes, but users still needed to locate the correct report, application or database table. Dashboards answered questions anticipated in advance, while new or cross-disciplinary questions required additional technical work.'
+						description: 'Geological data existed across many systems, while dashboards answered only predefined questions and cross-disciplinary analysis required technical support.'
 					},
 					{
 						subtitle: 'Solution',
-						description: 'Developed a natural-language interface over governed datasets. An MCP layer routes each question to the relevant semantic model, including earthworks, drillhole collars, diamond geology, RC geology, geophysics and restricted commercial data. The semantic layer defines fields, relationships and terminology before generating SQL. Queries run through a read-only tool using the user’s existing permissions, and the results return to the AI for interpretation and presentation.'
+						description: 'Built a natural-language interface where MCP routes questions through domain semantic models and read-only SQL tools governed by each user’s existing permissions.'
 					},
 					{
 						subtitle: 'Outcome',
-						description: 'The functioning system includes all planned semantic models and is being trialled by 25 users. It has completed cross-domain analyses such as comparing changes in headcount with achieved drilling metres over the previous two years, allowing users to investigate questions that would otherwise require several reports or systems.'
+						description: 'All semantic models are functioning with 25 trial users, including cross-system comparison of headcount and achieved drilling metres over two years.'
 					}
 				]
 			},
@@ -220,15 +220,15 @@ const years = [
 				sections: [
 					{
 						subtitle: 'Problem',
-						description: 'A significant data error was discovered during a meeting with an external vendor. The existing process depended heavily on Power BI reports and site teams noticing problems manually, so a system was needed to screen incoming geological and operational data before errors reached downstream stakeholders.'
+						description: 'A significant error reached an external vendor meeting because data-quality detection still depended on reports and manual review.'
 					},
 					{
 						subtitle: 'Solution',
-						description: 'Independently built an event-driven workflow around Snowflake. Streams initiate deterministic threshold checks and machine-learning pattern recognition as new records arrive. Detected issues enter a pending-messages table, which a Python service checks every ten seconds. The service sends structured JSON to an OpenAI model, which produces a concise Teams-style message and can use an MCP interface to compare the issue with the wider governed dataset. Power Automate then routes the notification according to its classification, while an archive table records the result and delivery information.'
+						description: 'Built a Snowflake-stream workflow combining threshold and ML checks with Python, OpenAI, MCP context, Power Automate routing and an auditable notification archive.'
 					},
 					{
 						subtitle: 'Outcome',
-						description: 'The system is live for five notification types and delivers targeted alerts within approximately 15 seconds of data reaching Snowflake. Monitoring includes metres achieved per day, contractor-timesheet cost, missing PLOD data and GuidEx connection quality. It has already identified a genuine PLOD cost that was statistically unusual relative to metres drilled and drilling hours, shifting selected controls from retrospective review to near-real-time detection with an auditable history.'
+						description: 'Live for five notification types, it alerts within 15 seconds and has identified a genuine PLOD cost anomaly relative to metres and drilling hours.'
 					}
 				]
 			},
