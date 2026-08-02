@@ -17,7 +17,7 @@ const years = [
 				},
 				{
 					subtitle: 'Outcome',
-					description: 'Became the standard PDF output attached to completed-hole notifications, giving metallurgical stakeholders a consistent view of photography, logging, assays and geophysics.'
+					description: 'Became the standard PDF output attached to completed-hole notifications, giving metallurgical stakeholders a consistent view of photography, logging, assays and geophysics. Approximately 4 holes are completed a week.'
 				}
 			]
 		},
@@ -58,18 +58,32 @@ const years = [
 		}
 	] },
 	{ year: '2024', entries: [
-		{ title: 'Enterprise geological QAQC automation platform', description: 'Developed a rules-based system for checking drilling and geological datasets, then re-engineered it from VBA into Python to improve speed, maintainability and scale.' },
-		{ title: 'Automated QAQC reporting pipeline', description: 'Built automated report-generation and distribution workflows, progressing the process into a scheduled data pipeline with interactive reporting outputs.' },
+		{
+			title: 'Enterprise geological QAQC automation platform',
+			sections: [
+				{
+					subtitle: 'Problem',
+					description: 'QAQC of any Geological workflow is highly subjective, I noticed the quality of the data we provided our stakeholders with varied drastically.'
+				},
+				{
+					subtitle: 'Solution',
+					description: 'I consulted with our Orebody Specialist to compose 20 strict logging rules to apply to our data, a list of non-negotiable requirements of our data. I initally built an Excel Macro that would apply these rules to a CSV upload of the logging, and highlighted probelems with the logged data. This eventually transitioned to being a PowerBI report reading our data directly from Snowflake.'
+				},
+				{
+					subtitle: 'Outcome',
+					description: 'The tool was well received, and is used to date. Has grown to become important part of our Senior Geologist's End-Of-Scope reporting.'
+				}
+			]
+		},
 		{ title: 'Sonic recovery and productivity analysis', description: 'Analysed recovery and production by geology, stratigraphy, shift, drilling method and ground conditions to distinguish operational performance from geological difficulty.' },
-		{ title: 'Penetration-rate data model and dashboard', description: 'Built a reusable data model and reporting product for penetration rates by rig, geology, stratigraphy and operating conditions.' },
-		{ title: 'Spatial drilling-risk workflow', description: 'Created a spatial assessment workflow so planned holes could be checked against known underground hazards.' },
+		{ title: 'Drilling-risk workflow', description: 'Created a spatial assessment workflow so planned holes could be checked against known underground hazards, specifically lost GET and Cavities.' },
 		{ title: 'Density-hole relocation analysis', description: 'Combined geological, assay and spatial constraints to identify technically suitable alternative drilling locations.' },
-		{ title: 'Geological data integration into an enterprise platform', description: 'Worked with data teams to expose drilling, logging and operational information in a governed enterprise data environment.' },
-		{ title: 'Dynamic rig-scheduling tool', description: 'Developed a scheduling concept combining project priorities, expected drilling durations and available rig capacity.' },
-		{ title: 'Invoice-reconciliation automation', description: 'Developed automated comparisons between contractor invoices and operational records to identify discrepancies.' },
-		{ title: 'ArcGIS pad-and-sump automation', description: 'Built an ArcGIS Pro Python toolbox that automated drilling pad and sump layouts and reduced repetitive GIS preparation.' },
+		{ title: 'Geological data integration into an enterprise platform', description: 'Worked with data teams to expose drilling, logging and operational information in Snowflake.' },
+		{ title: 'Dynamic rig-scheduling tool', description: 'Developed and implemented scheduling concept combining project priorities, expected drilling durations and available rig capacity.' },
+		{ title: 'AAAAInvoice-reconciliation automation', description: 'Developed automated comparisons between contractor invoices and operational records to identify discrepancies.' },
+		{ title: 'ArcGIS pad-and-sump automation', description: 'Built an ArcGIS Pro Python toolbox that automated drilling pad and sump layouts and reduced repetitive GIS preparation. Generated the .shp files required for the Trimble earthworks packages used ad the time.' },
 		{ title: 'Live project-completion reporting', description: 'Developed a reporting concept that progressively populated project-completion information from live operational and QAQC data.' },
-		{ title: 'Enterprise reporting migration', description: 'Reviewed a large reporting portfolio, removed duplication and rebuilt priority drilling, geology and QAQC products in a modern BI platform.' }
+		{ title: 'Tableau to PowerBI transition', description: 'Contributed to the department wide transition from Tableau to PowerBI by building out approximately 20 Diamond Drilling reports.' }
 	] },
 	{ year: '2025', entries: [
 		{ title: 'AI drill-core photo classification', description: 'Coordinated an AI project to recognise and classify information from core photographs, including the creation of review datasets and a validation workflow.' },
