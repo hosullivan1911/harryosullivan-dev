@@ -80,7 +80,23 @@ const years = [
 		{ title: 'Density-hole relocation analysis', description: 'Combined geological, assay and spatial constraints to identify technically suitable alternative drilling locations.' },
 		{ title: 'Geological data integration into an enterprise platform', description: 'Worked with data teams to expose drilling, logging and operational information in Snowflake.' },
 		{ title: 'Dynamic rig-scheduling tool', description: 'Developed and implemented scheduling concept combining project priorities, expected drilling durations and available rig capacity.' },
-		{ title: 'AAAAInvoice-reconciliation automation', description: 'Developed automated comparisons between contractor invoices and operational records to identify discrepancies.' },
+		{
+			title: 'PLOD and Invoice Reconcilliation Tool',
+			sections: [
+				{
+					subtitle: 'Problem',
+					description: 'I was tasked with comparing the drilling invoices to the submitted PLOD's (timesheets) each month, and then asked to recommend for the invoice to either be accepted, or not. This was a time consuming process and prone to Human Error.'
+				},
+				{
+					subtitle: 'Solution',
+					description: 'I built a Python script that could understand the format of each drill contractors invoice, and automatically reconcile the claim against the accepted PLOD data available through Coreplan.'
+				},
+				{
+					subtitle: 'Outcome',
+					description: 'I used the tool for the duration of my time in the team, and it was used once I moved on. It has now been replaced by a more sophistacted integrated tool. However, issues still remain as the source of the PLOD data is in itself dependant on Field Teams accepting PLOD costs, which is often done so incorrectly.'
+				}
+			]
+		},
 		{ title: 'ArcGIS pad-and-sump automation', description: 'Built an ArcGIS Pro Python toolbox that automated drilling pad and sump layouts and reduced repetitive GIS preparation. Generated the .shp files required for the Trimble earthworks packages used ad the time.' },
 		{ title: 'Live project-completion reporting', description: 'Developed a reporting concept that progressively populated project-completion information from live operational and QAQC data.' },
 		{ title: 'Tableau to PowerBI transition', description: 'Contributed to the department wide transition from Tableau to PowerBI by building out approximately 20 Diamond Drilling reports.' }
