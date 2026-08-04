@@ -1,0 +1,141 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SlopeTrajectoryDiagram from './geotech-slope-trajectory.png';
+import NearScarpDiagram from './geotech-near-scarp.png';
+---
+
+<Layout
+	title="A Practical Toolbox for Geotechnical Hazard Assessment"
+	description="Turning geotechnical field judgement into an automated, auditable workflow for screening surface drill pads."
+>
+	<div class="site">
+		<header>
+			<nav>
+				<a href="/">home</a>
+				<span>/</span>
+				<a href="/about">about</a>
+				<span>/</span>
+				<a href="/projects-to-date">projects to date</a>
+			</nav>
+		</header>
+
+		<main>
+			<p class="date">[ 2026-08-03 ]</p>
+			<h1>A Practical Toolbox for Geotechnical Hazard Assessment</h1>
+			<p class="subtitle">Turning field judgement into an automated, auditable workflow for surface drilling</p>
+
+			<p>At the end of July 2025, a major rockfall at the El Teniente copper mine in Chile killed six people. The event prompted mining teams around the world to review how geotechnical hazards were being identified and controlled.</p>
+			<p>Within my department, it raised a direct question: how were we managing geotechnical risk to surface drilling assets and personnel?</p>
+			<p>The honest answer was that the risk was being managed, but largely through field experience and professional judgement. Those controls were valuable, but there was no consistent way to screen every planned drill pad, record the result or demonstrate that the required assessment had occurred.</p>
+			<p>I was tasked with developing and implementing an end-to-end workflow that could formalise this process without making it unworkable at the scale of a large drilling operation.</p>
+
+			<h2>From experience to a repeatable control</h2>
+			<p>I began by consulting our internal geotechnical team. We agreed that two principles were particularly important when screening planned surface drill pads in the Pilbara:</p>
+			<ul>
+				<li><strong>slope trajectory hazard</strong>, which considers whether failed material could travel into the pad area; and</li>
+				<li><strong>near-scarp hazard</strong>, which considers whether the pad is too close to unstable or retreating ground near a crest.</li>
+			</ul>
+			<p>The objective was not to replace a geotechnical assessment. It was to identify locations that required one, make that decision consistently and ensure that higher-risk pads could not progress without the appropriate field controls.</p>
+
+			<h2>Slope trajectory hazard</h2>
+			<p>A slope trajectory hazard is the area below a potentially unstable slope that lies within a line projected downward from the failure crest or source area.</p>
+			<p>Large slope failures can travel outward at an overall runout angle of approximately 25 degrees or flatter. A 25-degree trajectory therefore provides a conservative way to screen potential runout and exclusion areas. It is not a precise prediction of where failed material will stop.</p>
+
+			<figure class="image-figure">
+				<img src={SlopeTrajectoryDiagram.src} alt="Cross-section showing a planned drill collar one metre above local ground and iterative terrain checks against a 25-degree trajectory line" loading="lazy" />
+				<figcaption>The slope trajectory test compares surrounding terrain with a 25-degree line projected from one metre above the planned drill-hole location.</figcaption>
+			</figure>
+
+			<h2>Near-scarp hazard</h2>
+			<p>Near-scarp hazard concerns the area close to and behind the crest of a slope. Ground that appears intact may still be affected by tension cracking, loss of support, overhang collapse or progressive retreat.</p>
+			<p>The visible scarp is not necessarily the final failure boundary. Personnel and equipment must therefore remain sufficiently set back, and the full proposed pad footprint must be considered rather than only the drill collar.</p>
+
+			<figure class="image-figure image-figure-narrow">
+				<img src={NearScarpDiagram.src} alt="Plan and cross-section showing a virtual drill pad divided into slope raster cells, with cells above the threshold highlighted red" loading="lazy" />
+				<figcaption>The near-scarp test creates a slope raster around the virtual pad. Cells exceeding the screening threshold are highlighted for assessment.</figcaption>
+			</figure>
+
+			<h2>Screening planned holes at scale</h2>
+			<p>A manual review of every planned hole would have added significant work for site teams, particularly because many holes sit in flat terrain with limited geotechnical exposure. For the process to be adopted, it needed to remove clearly low-risk locations quickly and focus attention where it mattered.</p>
+			<p>I built a Python toolbox that asks the user for the latest suitable digital elevation model and assesses the terrain surrounding every planned drill hole.</p>
+
+			<h3>Slope trajectory test</h3>
+			<p>For each planned collar, the toolbox adds one metre to the surface elevation to account for the typical height of the pad windrow. It then steps outward at ten-metre intervals.</p>
+			<p>At each interval, basic trigonometry determines the terrain elevation that would intersect a 25-degree trajectory. The toolbox checks the corresponding ring of cells in the elevation model. If any terrain is higher than the calculated threshold, the hole is flagged for slope trajectory assessment.</p>
+			<p>The search radius is set by site because terrain variability differs substantially between operations. At the most topographically varied site, the assessment extends to 1.5 kilometres from the hole, representing approximately 700 metres of elevation difference.</p>
+
+			<h3>Near-scarp test</h3>
+			<p>For the near-scarp assessment, the toolbox uses the relevant pad specification to generate a virtual pad around each planned hole. It adds a five-metre buffer and creates a one-metre-resolution slope raster covering the assessment area.</p>
+			<p>If any cell within that mosaic exceeds 30 degrees, the hole is flagged for near-scarp assessment. This ensures the test considers the space occupied by the rig, support equipment and working area, not simply the collar coordinate.</p>
+
+			<h3>Managing incomplete terrain data</h3>
+			<p>Elevation data near active pits is updated regularly. Remote terrain may be captured less frequently because it is less likely to have changed materially.</p>
+			<p>If a planned pad is not adequately covered by a suitable elevation model, the toolbox returns an <em>undetermined</em> result. The hole can then be routed for manual assessment or a targeted survey can be commissioned.</p>
+			<p>This is an important control. Missing data must not be interpreted as an absence of risk.</p>
+
+			<div class="workflow" aria-label="Geotechnical hazard assessment workflow">
+				<span>planned holes + DEM</span>
+				<b>→</b>
+				<span>automated screening</span>
+				<b>→</b>
+				<span>field assessment</span>
+				<b>→</b>
+				<span>controls + audit record</span>
+			</div>
+
+			<h2>Connecting the spatial test to field activity</h2>
+			<p>The spatial assessment is only the first part of the control. Results are uploaded into the drill-hole management system, creating an auditable record against each planned hole.</p>
+			<p>Locations requiring assessment must be reviewed in the field before earthworks begin. I worked with the geotechnical team to make sure field technicians received the training needed to complete that review.</p>
+			<p>Geotechnical risk can sometimes be reduced through controls such as relocating the pad, changing its orientation or installing a taller windrow. When controls are introduced, the user must record them through a dedicated form before the status can be changed.</p>
+			<p>The drill-management software prevents further activity on the hole until the assessment and any required controls have been documented.</p>
+			<p>This changes the process from an informal check into a traceable sequence:</p>
+			<ol>
+				<li>Screen every planned hole against current terrain data.</li>
+				<li>Identify locations requiring professional assessment.</li>
+				<li>Complete a field review before earthworks.</li>
+				<li>Record any controls applied to the pad.</li>
+				<li>Prevent work from progressing until the control is complete.</li>
+			</ol>
+
+			<h2>The outcome</h2>
+			<p>The workflow has been adopted within my department and discussions are beginning around its use in exploration.</p>
+			<p>Its value is not that it claims to predict every geotechnical failure. It creates a practical and scalable way to apply agreed screening rules, directs experienced people towards the locations that need their judgement and records the controls that allow work to proceed.</p>
+			<blockquote>Automation does not replace the geotechnical decision. It makes sure the decision is requested, completed and traceable.</blockquote>
+		</main>
+
+		<footer><a href="/">← back home</a></footer>
+	</div>
+</Layout>
+
+<style>
+	:global(*) { box-sizing: border-box; }
+	:global(html) { background: #000; color: #fff; font-family: "Courier New", Courier, monospace; }
+	:global(body) { margin: 0; background: #000; }
+	:global(a) { color: #fff; text-decoration: underline; text-underline-offset: 2px; }
+	.site { width: min(780px, calc(100% - 40px)); min-height: 100vh; margin: 0 auto; padding: 24px 0 32px; }
+	header { padding-bottom: 14px; border-bottom: 1px dashed #777; }
+	nav { display: flex; justify-content: flex-end; gap: 10px; font-size: 15px; }
+	main { padding: 48px 0; }
+	.date { color: #aaa; margin-bottom: 20px; }
+	h1 { margin: 0 0 12px; font-size: 24px; line-height: 1.4; }
+	.subtitle { color: #bbb; font-style: italic; margin-bottom: 34px; }
+	h2 { margin-top: 44px; font-size: 17px; line-height: 1.5; }
+	h3 { margin-top: 30px; font-size: 15px; line-height: 1.5; }
+	p, li, blockquote { max-width: 720px; font-size: 15px; line-height: 1.75; }
+	ul, ol { max-width: 720px; padding-left: 24px; }
+	li { margin-bottom: 7px; }
+	blockquote { margin: 28px 0; padding: 14px 18px; border-left: 2px solid #fff; color: #ddd; }
+	.image-figure { max-width: 720px; margin: 34px 0; }
+	.image-figure-narrow { max-width: 470px; }
+	.image-figure img { display: block; width: 100%; height: auto; border: 2px solid #fff; background: #fff; }
+	.image-figure figcaption { margin-top: 10px; color: #aaa; font-size: 12px; line-height: 1.6; }
+	.workflow { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; max-width: 720px; margin: 30px 0; padding: 16px; border: 1px dashed #777; font-size: 13px; line-height: 1.5; }
+	.workflow span { padding: 6px 8px; border: 1px solid #555; }
+	.workflow b { color: #888; }
+	footer { padding-top: 16px; border-top: 1px dashed #777; font-size: 15px; }
+	@media (max-width: 620px) {
+		.site { width: min(100% - 24px, 780px); }
+		nav { justify-content: flex-start; flex-wrap: wrap; }
+		main { padding: 34px 0; }
+	}
+</style>
